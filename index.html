@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Ben Worthington">
+<meta name="description" content="Ben Worthington’s CV. Front-End Developer with experience in HTML, CSS, JavaScript (ECMAScript), Sass/SCSS, SVG, React, JSX, Flux, Redux, Gulp, Git/GitHub">
+
+<link rel="icon" type="image/x-icon" href="/images/icons/favicon.ico">
+<link rel="icon" type="image/png" sizes="512x512" href="/images/icons/icon-512.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/images/icons/icon.png">
+<link rel="shortcut icon" href="3.png">
+
+<title>Ben Worthington CV</title>
+
+<style>
+:root {
+	--section-box-shadow: 0 -1px;
+}
+
+html {
+	background-color: #ddd;
+	font-family: verdana, sans-serif;
+	font-size: 14px;
+	line-height: 1.5;
+}
+
+body {
+	background-color: #fff;
+	box-shadow: 0 2px 5px 2px rgba(0, 0, 0, 0.2);
+	box-sizing: border-box;
+	color: #2d2d2d;
+	margin: 1rem auto;
+	padding: 7rem 5.4rem;
+	width: 65rem;
+}
+
+header {
+	padding-bottom: 1rem;
+	text-align: center;
+}
+
+section {
+	box-shadow: var(--section-box-shadow);
+	break-inside: avoid;
+	padding: 1rem 0;
+}
+
+footer {
+	box-shadow: var(--section-box-shadow);
+	padding-top: 1rem;
+	text-align: right;
+}
+
+footer small {
+	font-size: 50%;
+	font-style: italic;
+}
+
+p,
+li {
+	break-inside: avoid;
+	margin: 0 0 0.2rem;
+}
+
+ol,
+ul {
+	margin: 0 0 1rem;
+	padding-left: 1.6rem;
+}
+
+p:last-child,
+ol:last-child,
+ul:last-child,
+li:last-child {
+	margin-bottom: 0;
+}
+
+a:not(:hover):not(:active) {
+	color: unset;
+}
+
+/* abbr, q, cite, dfn, em, i, strong, b */
+abbr[title] {
+	border-bottom: 1px dotted;
+	cursor: help;
+}
+
+.name {
+	font-size: 150%;
+	line-height: initial;
+	margin: 0 0 1rem;
+}
+
+.about {
+	list-style: none;
+	padding: 0;
+}
+
+.about li {
+	display: inline;
+}
+
+.about li:not(:last-child) {
+	margin: 0 1rem 0 0;
+}
+
+.about li:not(:last-child)::after {
+	content: ' •';
+	margin-left: 1rem;
+}
+
+.address {
+	display: inline;
+	font-style: unset;
+}
+
+.section-heading {
+	break-after: avoid;
+	font-size: unset;
+	margin: 0 0 1rem;
+	text-transform: uppercase;
+}
+
+.section-heading ~ p,
+.section-heading ~ ul {
+	margin-left: 9rem;
+}
+
+.timeline {
+	list-style: none;
+	padding: 0;
+}
+
+.timeline > li {
+	margin-bottom: 1rem;
+}
+
+.timeline .date {
+	break-after: avoid;
+	float: left;
+	font-style: italic;
+	margin: 0;
+	max-width: 8rem;
+}
+
+.timeline .date ~ p,
+.timeline .date ~ ul {
+	margin-left: 9rem;
+}
+
+.timeline .date ~ ul {
+	list-style-type: initial;
+}
+
+.company {
+	break-after: avoid;
+	font-size: unset;
+	margin: 0 0 1rem 9rem;
+	text-transform: uppercase;
+}
+
+.company a {
+	text-decoration: unset;
+}
+
+.job-title {
+	break-after: avoid;
+	font-size: unset;
+	margin: 0 0 1rem 9rem;
+}
+
+@media screen and (max-width: 938px) {
+	html {
+		font-size: 12px;
+	}
+
+	body {
+		margin: 1rem;
+		padding: 7rem 8%;
+		width: unset;
+	}
+}
+
+@media screen and (max-width: 760px) {
+	.about li {
+		display: block;
+	}
+
+	.about li:not(:last-child) {
+		margin: 0 0 0.2rem 0;
+	}
+
+	.about li:not(:last-child)::after {
+		content: unset;
+	}
+
+	.section-heading ~ p,
+	.section-heading ~ ul,
+	.timeline .date ~ p,
+	.timeline .date ~ ul,
+	.company,
+	.job-title {
+		margin-left: 0;
+	}
+
+	.timeline .date {
+		float: right;
+		max-width: unset;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	html {
+		background-color: unset;
+	}
+
+	body {
+		background-color: unset;
+		box-shadow: unset;
+		margin: 0;
+	}
+}
+
+@media print {
+	@page {
+		margin: 2cm 2.5cm;
+	}
+
+	html {
+		background-color: unset;
+		font-size: 8pt;
+	}
+
+	body {
+		background-color: unset;
+		box-shadow: unset;
+		padding: 0;
+		width: unset;
+	}
+
+	section,
+	footer {
+		box-shadow: 0 -1pt 0 -0.5pt;
+	}
+
+	a[href] {
+		text-decoration: unset;
+	}
+
+	.print-link[href]::after {
+		content: ' (' attr(href) ')';
+	}
+}
+</style>
+</head>
+
+<body>
+<header>
+	<h1 class="name">Ben Worthington</h1>
+	<ul class="about">
+		<li><address class="address">Reading, Berkshire, UK</address></li>
+		<li><a href="mailto:bgwcv1@gmail.com">bgwcv1@gmail.com</a></li>
+		<li><a class="print-link" href="https://github.com/bworth">GitHub</a></li>
+	</ul>
+</header>
+
+<section id="summary">
+	<h2 class="section-heading">Summary</h2>
+	<p>Senior Front-End Developer with over eight years experience building high quality responsive web applications across mobile and desktop platforms.</p>
+	<p>Always applies a creative, logical and consistent approach to both software development and building user interfaces.</p>
+	<p>Conscious of demand for efficiency, performance and rapid development versus code reusability, sustainability and use of best practices.</p>
+	<p>Highly motivated to learn new skills with a strong interest in future web technologies.</p>
+	<p>Experienced communicator, from talks at international conferences and board level presentations, to producing documents tailored for audiences of all levels.</p>
+	<p>Consistently demonstrated the ability to achieve a high level of proficiency in a range of technical subjects including mobile services, consumer electronics technologies, standardisation efforts and software development.</p>
+	<!--Open web standards, user experience, UI design-->
+</section>
+
+<section id="technical-skills">
+	<h2 class="section-heading">Technical Skills</h2>
+	<ul>
+		<li>Advanced: HTML and related APIs, CSS, JavaScript (ECMAScript) inc. DOM & related APIs, Sass/SCSS, SVG</li>
+		<li>Experienced: React, JSX, Flux, Redux, Gulp, Git/GitHub</li>
+		<li>TDD/BDD – React Testing Library, Jest, Mocha, Karma, Chai and Sinon</li>
+		<li>Detailed understanding of desktop and mobile browser capabilities and W3C compliancy</li>
+		<li>Agile methodologies – part of successful Scrum and Kanban teams</li>
+		<li>Adobe Illustrator and Photoshop</li>
+		<li>Wide range of experience in analytical technology assessment and consultancy work</li>
+		<li>In-depth knowledge of mobile device hardware and software platforms, mobile network architecture, and a wide range of telecoms services and service delivery platforms</li>
+	</ul>
+</section>
+
+<section id="professional-experience">
+	<h2 class="section-heading">Professional Experience</h2>
+	<ol class="timeline">
+		<li>
+			<p class="date">
+				<time datetime="2019-06" title="June 2019">2019</time> –
+				<time datetime="2020-10" title="October 2020">present</time>
+			</p>
+			<h3 class="company"><a href="https://bimble.com">Bimble Ltd</a>, UK</h3>
+			<h4 class="job-title">Speaker</h4>
+			<ul>
+				<li>Done stuff</li>
+				<li>Done stuff</li>
+				<li>Done stuff</li>
+			</ul>
+		</li>
+		<li>
+			<p class="date">
+				<time datetime="2018-07" title="June 2019">2018</time> –
+				<time datetime="2020-10" title="June 2019">present</time>
+			</p>
+			<h3 class="company"><a href="https://bimble.com">Bimble Ltd</a>, UK</h3>
+			<h4 class="job-title">Speaker</h4>
+			<ul>
+				<li>Done stuff</li>
+			</ul>
+		</li>
+	</ol>
+</section>
+
+<section id="references">
+	<h2 class="section-heading">References</h2>
+	<p>References are available on request.</p>
+</section>
+
+<footer>
+	<p><small>Last updated <time datetime="2020-10">Oct 2020</time></small></p>
+</footer>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+	const extLinks = document.querySelectorAll('a[href^="http://"], a[href^="https://"]');
+
+	for (let i = extLinks.length, a; a = extLinks[--i];) {
+		a.setAttribute('target', '_blank');
+		a.setAttribute('rel', 'nofollow noopener noreferrer');
+		a.setAttribute('title','This link will open in a new window');
+	}
+});
+</script>
+</body>
+</html>
