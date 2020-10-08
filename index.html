@@ -1,15 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="author" content="Ben Worthington">
-<meta name="description" content="Ben Worthington’s CV. Front-End Developer with experience in HTML, CSS, JavaScript (ECMAScript), Sass/SCSS, SVG, React, JSX, Flux, Redux, Gulp, Git/GitHub">
+<meta name="description" content="Ben Worthington, a front-end developer’s CV">
+<meta name="keywords" content="HTML, CSS, JavaScript, ECMAScript, React, JSX, Flux, Redux, Sass, SCSS, SVG, Git">
+<meta name="application-name" content="BW CV">
+<meta name="apple-mobile-web-app-title" content="BW CV">
+<meta name="theme-color" content="#fff">
 
-<link rel="icon" type="image/x-icon" href="/images/icons/favicon.ico">
-<link rel="icon" type="image/png" sizes="512x512" href="/images/icons/icon-512.png">
-<link rel="icon" type="image/png" sizes="192x192" href="/images/icons/icon.png">
-<link rel="shortcut icon" href="3.png">
+<meta property="og:title" content="Ben Worthington">
+<meta property="og:description" content="A front-end developer’s CV">
+<meta property="og:url" content="https://bworth.github.io/cv">
+
+<link rel="manifest" href="site.webmanifest">
+<link rel="icon" type="image/png" sizes="16x16" href="images/icon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="images/icon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="images/icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="images/icon-512.png">
+<link rel="apple-touch-icon" href="images/icon-192.png">
 
 <title>Ben Worthington CV</title>
 
@@ -23,6 +33,7 @@ html {
 	font-family: verdana, sans-serif;
 	font-size: 14px;
 	line-height: 1.5;
+	-webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -86,6 +97,12 @@ abbr[title] {
 	cursor: help;
 }
 
+abbr[title] {
+	border-bottom: none;
+	text-decoration: underline;
+	text-decoration: underline dotted;
+}
+
 .name {
 	font-size: 150%;
 	line-height: initial;
@@ -102,12 +119,12 @@ abbr[title] {
 }
 
 .about li:not(:last-child) {
-	margin: 0 1rem 0 0;
+	margin: 0 0.5em 0 0;
 }
 
 .about li:not(:last-child)::after {
 	content: ' •';
-	margin-left: 1rem;
+	margin-left: 0.5em;
 }
 
 .address {
@@ -123,7 +140,11 @@ abbr[title] {
 }
 
 .section-heading ~ p,
-.section-heading ~ ul {
+.section-heading ~ ul,
+.timeline .date ~ p,
+.timeline .date ~ ul,
+.timeline .date ~ details,
+.timeline .date ~ .job-title {
 	margin-left: 9rem;
 }
 
@@ -144,19 +165,29 @@ abbr[title] {
 	max-width: 8rem;
 }
 
-.timeline .date ~ p,
-.timeline .date ~ ul {
-	margin-left: 9rem;
+.timeline .date ~ ul,
+.timeline details > ul {
+	list-style-type: initial;
 }
 
-.timeline .date ~ ul {
-	list-style-type: initial;
+.timeline summary {
+	cursor: pointer;
+	display: none;
+	margin-bottom: 0.8rem;
+}
+
+.timeline summary::after {
+	content: 'Show details';
+}
+
+.timeline details[open] summary::after {
+	content: 'Hide details';
 }
 
 .company {
 	break-after: avoid;
 	font-size: unset;
-	margin: 0 0 1rem 9rem;
+	margin: 0 0 0.8rem 9rem;
 	text-transform: uppercase;
 }
 
@@ -167,28 +198,38 @@ abbr[title] {
 .job-title {
 	break-after: avoid;
 	font-size: unset;
-	margin: 0 0 1rem 9rem;
+	margin: 0 0 0.8rem;
 }
 
-@media screen and (max-width: 938px) {
+@media screen and (max-width: 937px) {
 	html {
 		font-size: 12px;
 	}
 
 	body {
-		margin: 1rem;
+		margin: calc(1rem * 14 / 12);
 		padding: 7rem 8%;
 		width: unset;
 	}
 }
 
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 759px) {
+	html {
+		background-color: unset;
+	}
+
+	body {
+		background-color: unset;
+		box-shadow: unset;
+		margin: 0;
+	}
+
 	.about li {
 		display: block;
 	}
 
 	.about li:not(:last-child) {
-		margin: 0 0 0.2rem 0;
+		margin: 0 0 0.8rem 0;
 	}
 
 	.about li:not(:last-child)::after {
@@ -199,26 +240,20 @@ abbr[title] {
 	.section-heading ~ ul,
 	.timeline .date ~ p,
 	.timeline .date ~ ul,
-	.company,
-	.job-title {
+	.timeline .date ~ details,
+	.timeline .date ~ .job-title,
+	.company {
 		margin-left: 0;
 	}
 
 	.timeline .date {
 		float: right;
+		margin-left: 1em;
 		max-width: unset;
 	}
-}
 
-@media screen and (max-width: 600px) {
-	html {
-		background-color: unset;
-	}
-
-	body {
-		background-color: unset;
-		box-shadow: unset;
-		margin: 0;
+	.show-summary summary {
+		display: list-item;
 	}
 }
 
@@ -235,6 +270,7 @@ abbr[title] {
 	body {
 		background-color: unset;
 		box-shadow: unset;
+		color: #000;
 		padding: 0;
 		width: unset;
 	}
@@ -248,8 +284,12 @@ abbr[title] {
 		text-decoration: unset;
 	}
 
-	.print-link[href]::after {
-		content: ' (' attr(href) ')';
+	.print-link[href][data-url] .link-name {
+		display: none;
+	}
+
+	.print-link[href][data-url]::after {
+		content: attr(data-url);
 	}
 }
 </style>
@@ -261,7 +301,8 @@ abbr[title] {
 	<ul class="about">
 		<li><address class="address">Reading, Berkshire, UK</address></li>
 		<li><a href="mailto:bgwcv1@gmail.com">bgwcv1@gmail.com</a></li>
-		<li><a class="print-link" href="https://github.com/bworth">GitHub</a></li>
+		<li><a class="print-link" href="https://uk.linkedin.com/in/bgworthington" data-url="uk.linkedin.com/in/bgworthington"><span class="link-name">LinkedIn</span></a></li>
+		<li><a class="print-link" href="https://github.com/bworth" data-url="github.com/bworth"><span class="link-name">GitHub</span></a></li>
 	</ul>
 </header>
 
@@ -292,30 +333,42 @@ abbr[title] {
 
 <section id="professional-experience">
 	<h2 class="section-heading">Professional Experience</h2>
-	<ol class="timeline">
+	<ol class="timeline" reversed>
 		<li>
 			<p class="date">
-				<time datetime="2019-06" title="June 2019">2019</time> –
-				<time datetime="2020-10" title="October 2020">present</time>
+				<time datetime="64w" title="1 year 3 months">
+					<time datetime="2019-06">2019</time> –
+					<time datetime="2020-10">present</time>
+				</time>
 			</p>
 			<h3 class="company"><a href="https://bimble.com">Bimble Ltd</a>, UK</h3>
-			<h4 class="job-title">Speaker</h4>
-			<ul>
-				<li>Done stuff</li>
-				<li>Done stuff</li>
-				<li>Done stuff</li>
-			</ul>
+			<details open>
+				<summary title="Show/hide details"></summary>
+				<h4 class="job-title">Speaker</h4>
+				<ul>
+					<li>Done stuff</li>
+					<li>Done stuff</li>
+					<li>Done stuff</li>
+				</ul>
+			</details>
 		</li>
 		<li>
 			<p class="date">
-				<time datetime="2018-07" title="June 2019">2018</time> –
-				<time datetime="2020-10" title="June 2019">present</time>
+				<time datetime="64w" title="1 year 3 months">
+					<time datetime="2019-06">2019</time> –
+					<time datetime="2020-10">present</time>
+				</time>
 			</p>
 			<h3 class="company"><a href="https://bimble.com">Bimble Ltd</a>, UK</h3>
-			<h4 class="job-title">Speaker</h4>
-			<ul>
-				<li>Done stuff</li>
-			</ul>
+			<details open>
+				<summary title="Show/hide details"></summary>
+				<h4 class="job-title">Speaker</h4>
+				<ul>
+					<li>Done stuff</li>
+					<li>Done stuff</li>
+					<li>Done stuff</li>
+				</ul>
+			</details>
 		</li>
 	</ol>
 </section>
@@ -326,17 +379,26 @@ abbr[title] {
 </section>
 
 <footer>
-	<p><small>Last updated <time datetime="2020-10">Oct 2020</time></small></p>
+	<p><small>Last updated <time datetime="2020-10">Oct 2020</time>.</small></p>
 </footer>
 
 <script>
 window.addEventListener('DOMContentLoaded', () => {
-	const extLinks = document.querySelectorAll('a[href^="http://"], a[href^="https://"]');
+	const externalLinks = document.querySelectorAll('a[href^="http://"], a[href^="https://"]');
 
-	for (let i = extLinks.length, a; a = extLinks[--i];) {
+	for (let i = externalLinks.length, a; a = externalLinks[--i];) {
 		a.setAttribute('target', '_blank');
 		a.setAttribute('rel', 'nofollow noopener noreferrer');
 		a.setAttribute('title','This link will open in a new window');
+	}
+
+	if (Math.max(screen.availWidth, screen.availHeight) < 760) {
+		const timelineDetails = document.querySelectorAll('.timeline details');
+
+		for (let i = timelineDetails.length, details; details = timelineDetails[--i];) {
+			details.removeAttribute('open');
+			details.classList.add('show-summary');
+		}
 	}
 });
 </script>
