@@ -376,9 +376,9 @@ abbr[title] {
 
 <script>
 window.addEventListener('DOMContentLoaded', () => {
-	const extLinks = document.querySelectorAll('a[href^="http://"], a[href^="https://"]');
+	const externalLinks = document.querySelectorAll('a[href^="http://"], a[href^="https://"]');
 
-	for (let i = extLinks.length, a; a = extLinks[--i];) {
+	for (let i = externalLinks.length, a; a = externalLinks[--i];) {
 		a.setAttribute('target', '_blank');
 		a.setAttribute('rel', 'nofollow noopener noreferrer');
 		a.setAttribute('title','This link will open in a new window');
