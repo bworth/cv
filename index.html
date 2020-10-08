@@ -276,8 +276,12 @@ abbr[title] {
 		text-decoration: unset;
 	}
 
-	.print-link[href]::after {
-		content: ' (' attr(href) ')';
+	.print-link[href][data-url] .link-name {
+		display: none;
+	}
+
+	.print-link[href][data-url]::after {
+		content: attr(data-url);
 	}
 }
 </style>
@@ -289,7 +293,8 @@ abbr[title] {
 	<ul class="about">
 		<li><address class="address">Reading, Berkshire, UK</address></li>
 		<li><a href="mailto:bgwcv1@gmail.com">bgwcv1@gmail.com</a></li>
-		<li><a class="print-link" href="https://github.com/bworth">GitHub</a></li>
+		<li><a class="print-link" href="https://uk.linkedin.com/in/bgworthington" data-url="uk.linkedin.com/in/bgworthington"><span class="link-name">LinkedIn</span></a></li>
+		<li><a class="print-link" href="https://github.com/bworth" data-url="github.com/bworth"><span class="link-name">GitHub</span></a></li>
 	</ul>
 </header>
 
