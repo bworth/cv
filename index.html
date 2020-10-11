@@ -53,13 +53,19 @@ html {
 	-webkit-text-size-adjust: 100%;
 }
 
+html.loaded body {
+	opacity: 1;
+}
+
 body {
 	background-color: #fff;
 	box-shadow: 0 2px 5px 2px rgba(0, 0, 0, 0.2);
 	box-sizing: border-box;
 	color: var(--color-text);
 	margin: 1rem auto;
+	opacity: 0;
 	padding: 7rem 5.4rem;
+	transition: opacity 500ms;
 	width: 65rem;
 }
 
@@ -350,6 +356,14 @@ a:not(:hover) {
 	}
 }
 </style>
+
+<noscript>
+<style>
+body {
+	opacity: 1;
+}
+</style>
+</noscript>
 </head>
 
 <body>
@@ -467,6 +481,8 @@ window.addEventListener('DOMContentLoaded', () => {
 			details.classList.add('show-summary');
 		}
 	}
+
+	setTimeout(() => document.documentElement.classList.add('loaded'));
 });
 </script>
 </body>
