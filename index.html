@@ -112,6 +112,19 @@ a:not(:hover) {
 	text-decoration: unset;
 }
 
+.icons {
+	height: 0;
+	position: absolute;
+	visibility: hidden;
+	width: 0;
+}
+
+.icon {
+	stroke: currentColor;
+	stroke-linecap: round;
+	stroke-width: 0.2em;
+}
+
 .name {
 	font-size: 150%;
 	line-height: initial;
@@ -182,6 +195,12 @@ a:not(:hover) {
 .timeline summary {
 	cursor: pointer;
 	display: none;
+	list-style: none;
+	overflow: hidden;
+	padding-left: 1.6rem;
+	perspective: 1em;
+	perspective-origin: calc(0.5em * var(--line-height));
+	position: relative;
 	transition: color 500ms;
 }
 
@@ -194,12 +213,30 @@ a:not(:hover) {
 	display: list-item;
 }
 
+.timeline summary::-webkit-details-marker {
+	display: none;
+}
+
 .timeline summary::after {
 	content: 'Show more…';
 }
 
 .timeline details[open] summary::after {
 	content: 'Hide';
+}
+
+.timeline summary .icon {
+	height: calc(1em * var(--line-height) - 1px);
+	left: 0;
+	position: absolute;
+	top: 1px;
+	transition: transform 500ms;
+	vertical-align: top;
+	width: calc(1em * var(--line-height) - 1px);
+}
+
+.timeline details[open] summary .icon {
+	transform: rotateX(-0.5turn);
 }
 
 .timeline details.show-summary[open] p,
@@ -316,6 +353,12 @@ a:not(:hover) {
 </head>
 
 <body>
+<svg class="icons">
+	<symbol id="symbol-chevron-down" viewBox="0 0 24 24">
+		<path fill="none" d="M6 9l6 6 6-6" />
+	</symbol>
+</svg>
+
 <header>
 	<h1 class="name">Ben Worthington</h1>
 	<ul class="about">
@@ -363,7 +406,9 @@ a:not(:hover) {
 			</p>
 			<h3 class="company"><a href="https://bimble.com">Bimble Ltd</a>, UK</h3>
 			<details open>
-				<summary title="Show/hide details"></summary>
+				<summary title="Show/hide details">
+					<svg class="icon" role="img" aria-label="Toggle"><use xlink:href="#symbol-chevron-down" /></svg>
+				</summary>
 				<h4 class="job-title">Speaker</h4>
 				<ul>
 					<li>Done stuff</li>
@@ -381,7 +426,9 @@ a:not(:hover) {
 			</p>
 			<h3 class="company"><a href="https://bimble.com">Bimble Ltd</a>, UK</h3>
 			<details open>
-				<summary title="Show/hide details"></summary>
+				<summary title="Show/hide details">
+					<svg class="icon" role="img" aria-label="Toggle"><use xlink:href="#symbol-chevron-down" /></svg>
+				</summary>
 				<h4 class="job-title">Speaker</h4>
 				<ul>
 					<li>Done stuff</li>
