@@ -21,10 +21,27 @@
 <link rel="icon" type="image/png" sizes="512x512" href="images/icon-512.png">
 <link rel="apple-touch-icon" href="images/icon-192.png">
 
-<title>Ben Worthington CV</title>
+<title>Ben Worthington’s CV</title>
 
 <style>
+@keyframes reveal {
+	from {
+		opacity: 0;
+		transform: translateY(-1rem);
+	}
+
+	to {
+		opacity: unset;
+		transform: unset;
+	}
+}
+
 :root {
+	--color-text: #2d2d2d;
+	/*--color-text-interactive: #1a0dab;*/
+	--color-text-interactive: #1558d6;
+	--color-text-diminished: #aaa;
+	--line-height: 1.5;
 	--section-box-shadow: 0 -1px;
 }
 
@@ -32,17 +49,23 @@ html {
 	background-color: #ddd;
 	font-family: verdana, sans-serif;
 	font-size: 14px;
-	line-height: 1.5;
+	line-height: var(--line-height);
 	-webkit-text-size-adjust: 100%;
+}
+
+html.loaded body {
+	opacity: 1;
 }
 
 body {
 	background-color: #fff;
 	box-shadow: 0 2px 5px 2px rgba(0, 0, 0, 0.2);
 	box-sizing: border-box;
-	color: #2d2d2d;
+	color: var(--color-text);
 	margin: 1rem auto;
+	opacity: 0;
 	padding: 7rem 5.4rem;
+	transition: opacity 500ms;
 	width: 65rem;
 }
 
@@ -87,20 +110,25 @@ li:last-child {
 	margin-bottom: 0;
 }
 
-a:not(:hover):not(:active) {
-	color: unset;
+a[href] {
+	color: var(--color-text-interactive);
 }
 
-/* abbr, q, cite, dfn, em, i, strong, b */
-abbr[title] {
-	border-bottom: 1px dotted;
-	cursor: help;
+a:not(:hover) {
+	text-decoration: unset;
 }
 
-abbr[title] {
-	border-bottom: none;
-	text-decoration: underline;
-	text-decoration: underline dotted;
+.icons {
+	height: 0;
+	position: absolute;
+	visibility: hidden;
+	width: 0;
+}
+
+.icon {
+	stroke: currentColor;
+	stroke-linecap: round;
+	stroke-width: 0.2em;
 }
 
 .name {
@@ -173,15 +201,54 @@ abbr[title] {
 .timeline summary {
 	cursor: pointer;
 	display: none;
+	list-style: none;
+	overflow: hidden;
+	padding-left: 1.6rem;
+	perspective: 1em;
+	perspective-origin: calc(0.5em * var(--line-height));
+	position: relative;
+	transition: color 500ms;
+}
+
+.timeline details[open] summary {
+	color: var(--color-text-diminished);
 	margin-bottom: 0.8rem;
 }
 
+.timeline .show-summary summary {
+	display: list-item;
+}
+
+.timeline summary::-webkit-details-marker {
+	display: none;
+}
+
 .timeline summary::after {
-	content: 'Show details';
+	content: 'Show more…';
 }
 
 .timeline details[open] summary::after {
-	content: 'Hide details';
+	content: 'Hide';
+}
+
+.timeline summary .icon {
+	height: calc(1em * var(--line-height) - 1px);
+	left: 0;
+	position: absolute;
+	top: 1px;
+	transition: transform 500ms;
+	vertical-align: top;
+	width: calc(1em * var(--line-height) - 1px);
+}
+
+.timeline details[open] summary .icon {
+	transform: rotateX(-0.5turn);
+}
+
+.timeline details.show-summary[open] p,
+.timeline details.show-summary[open] ul,
+.timeline details.show-summary[open] .job-title {
+	animation: reveal 500ms forwards;
 }
 
 .company {
@@ -192,7 +259,7 @@ abbr[title] {
 }
 
 .company a {
-	text-decoration: unset;
+	color: unset;
 }
 
 .job-title {
@@ -251,10 +318,6 @@ abbr[title] {
 		margin-left: 1em;
 		max-width: unset;
 	}
-
-	.show-summary summary {
-		display: list-item;
-	}
 }
 
 @media print {
@@ -281,7 +344,7 @@ abbr[title] {
 	}
 
 	a[href] {
-		text-decoration: unset;
+		color: unset;
 	}
 
 	.print-link[href][data-url] .link-name {
@@ -293,9 +356,23 @@ abbr[title] {
 	}
 }
 </style>
+
+<noscript>
+<style>
+body {
+	opacity: 1;
+}
+</style>
+</noscript>
 </head>
 
 <body>
+<svg class="icons">
+	<symbol id="symbol-chevron-down" viewBox="0 0 24 24">
+		<path fill="none" d="M6 9l6 6 6-6" />
+	</symbol>
+</svg>
+
 <header>
 	<h1 class="name">Ben Worthington</h1>
 	<ul class="about">
@@ -343,7 +420,9 @@ abbr[title] {
 			</p>
 			<h3 class="company"><a href="https://bimble.com">Bimble Ltd</a>, UK</h3>
 			<details open>
-				<summary title="Show/hide details"></summary>
+				<summary title="Show/hide details">
+					<svg class="icon" role="img" aria-label="Toggle"><use xlink:href="#symbol-chevron-down" /></svg>
+				</summary>
 				<h4 class="job-title">Speaker</h4>
 				<ul>
 					<li>Done stuff</li>
@@ -361,7 +440,9 @@ abbr[title] {
 			</p>
 			<h3 class="company"><a href="https://bimble.com">Bimble Ltd</a>, UK</h3>
 			<details open>
-				<summary title="Show/hide details"></summary>
+				<summary title="Show/hide details">
+					<svg class="icon" role="img" aria-label="Toggle"><use xlink:href="#symbol-chevron-down" /></svg>
+				</summary>
 				<h4 class="job-title">Speaker</h4>
 				<ul>
 					<li>Done stuff</li>
@@ -398,8 +479,11 @@ window.addEventListener('DOMContentLoaded', () => {
 		for (let i = timelineDetails.length, details; details = timelineDetails[--i];) {
 			details.removeAttribute('open');
 			details.classList.add('show-summary');
+			details.querySelector('summary').addEventListener('click', (event) => event.currentTarget.blur());
 		}
 	}
+
+	setTimeout(() => document.documentElement.classList.add('loaded'));
 });
 </script>
 </body>
