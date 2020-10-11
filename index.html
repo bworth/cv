@@ -76,7 +76,6 @@ header {
 
 section {
 	box-shadow: var(--section-box-shadow);
-	break-inside: avoid;
 	padding: 1rem 0;
 }
 
@@ -162,6 +161,7 @@ a:not(:hover) {
 
 .section-heading {
 	break-after: avoid;
+	break-inside: avoid;
 	font-size: unset;
 	margin: 0 0 1rem;
 	text-transform: uppercase;
@@ -172,7 +172,7 @@ a:not(:hover) {
 .timeline .date ~ p,
 .timeline .date ~ ul,
 .timeline .date ~ details,
-.timeline .date ~ .job-title {
+.timeline .date ~ .position {
 	margin-left: 9rem;
 }
 
@@ -185,8 +185,13 @@ a:not(:hover) {
 	margin-bottom: 1rem;
 }
 
+.timeline > li:last-child {
+	margin-bottom: 0;
+}
+
 .timeline .date {
 	break-after: avoid;
+	break-inside: avoid;
 	float: left;
 	font-style: italic;
 	margin: 0;
@@ -247,25 +252,41 @@ a:not(:hover) {
 
 .timeline details.show-summary[open] p,
 .timeline details.show-summary[open] ul,
-.timeline details.show-summary[open] .job-title {
+.timeline details.show-summary[open] .position {
 	animation: reveal 500ms forwards;
 }
 
-.company {
+.timeline summary + p {
+	margin-bottom: 0.8rem;
+}
+
+.organisation {
 	break-after: avoid;
+	break-inside: avoid;
 	font-size: unset;
 	margin: 0 0 0.8rem 9rem;
 	text-transform: uppercase;
 }
 
-.company a {
+.organisation a,
+.institution a {
 	color: unset;
 }
 
-.job-title {
+.organisation .location {
+	text-transform: initial;
+}
+
+.position {
 	break-after: avoid;
+	break-inside: avoid;
 	font-size: unset;
 	margin: 0 0 0.8rem;
+}
+
+.group,
+.institution {
+	font-style: italic;
 }
 
 @media screen and (max-width: 937px) {
@@ -308,8 +329,8 @@ a:not(:hover) {
 	.timeline .date ~ p,
 	.timeline .date ~ ul,
 	.timeline .date ~ details,
-	.timeline .date ~ .job-title,
-	.company {
+	.timeline .date ~ .position,
+	.organisation {
 		margin-left: 0;
 	}
 
@@ -327,7 +348,7 @@ a:not(:hover) {
 
 	html {
 		background-color: unset;
-		font-size: 8pt;
+		font-size: 6.8pt;
 	}
 
 	body {
@@ -340,7 +361,8 @@ a:not(:hover) {
 
 	section,
 	footer {
-		box-shadow: 0 -1pt 0 -0.5pt;
+		border-top: 0.5pt solid;
+		box-shadow: unset;
 	}
 
 	a[href] {
@@ -391,13 +413,12 @@ body {
 	<p>Highly motivated to learn new skills with a strong interest in future web technologies.</p>
 	<p>Experienced communicator, from talks at international conferences and board level presentations, to producing documents tailored for audiences of all levels.</p>
 	<p>Consistently demonstrated the ability to achieve a high level of proficiency in a range of technical subjects including mobile services, consumer electronics technologies, standardisation efforts and software development.</p>
-	<!--Open web standards, user experience, UI design-->
 </section>
 
 <section id="technical-skills">
 	<h2 class="section-heading">Technical Skills</h2>
 	<ul>
-		<li>Advanced: HTML and related APIs, CSS, JavaScript (ECMAScript) inc. DOM & related APIs, Sass/SCSS, SVG</li>
+		<li>Advanced: HTML and related APIs, CSS, JavaScript (ECMAScript) inc. DOM and related APIs, Sass/SCSS, SVG</li>
 		<li>Experienced: React, JSX, Flux, Redux, Gulp, Git/GitHub</li>
 		<li>TDD/BDD – React Testing Library, Jest, Mocha, Karma, Chai and Sinon</li>
 		<li>Detailed understanding of desktop and mobile browser capabilities and W3C compliancy</li>
@@ -413,45 +434,151 @@ body {
 	<ol class="timeline" reversed>
 		<li>
 			<p class="date">
-				<time datetime="64w" title="1 year 3 months">
+				<time datetime="68w" title="June 2019 to present, 1 year 5 months">
 					<time datetime="2019-06">2019</time> –
 					<time datetime="2020-10">present</time>
 				</time>
 			</p>
-			<h3 class="company"><a href="https://bimble.com">Bimble Ltd</a>, UK</h3>
+			<h3 class="organisation"><a href="https://bimble.com">Bimble Ltd</a>, <span class="location">UK</span></h3>
 			<details open>
 				<summary title="Show/hide details">
 					<svg class="icon" role="img" aria-label="Toggle"><use xlink:href="#symbol-chevron-down" /></svg>
 				</summary>
-				<h4 class="job-title">Speaker</h4>
+				<h4 class="position">Front-End Developer</h4>
 				<ul>
-					<li>Done stuff</li>
-					<li>Done stuff</li>
-					<li>Done stuff</li>
+					<li>Sole front-end developer in a start-up environment with responsibility for development of a responsive, mobile-first website</li>
+					<li>Introduced a new React based front-end platform, first public version released within a matter of months</li>
+					<li>Worked closely with design and UX teams to develop an adaptive, cross-device UX</li>
+					<li>Adapted, and extended existing Flask-RESTPlus back-end API library where necessary</li>
 				</ul>
 			</details>
 		</li>
 		<li>
 			<p class="date">
-				<time datetime="64w" title="1 year 3 months">
-					<time datetime="2019-06">2019</time> –
-					<time datetime="2020-10">present</time>
+				<time datetime="26w" title="May 2017 to October 2017, 6 months">
+					<time datetime="2017-05">2017</time> –
+					<time datetime="2017-10">2017</time>
 				</time>
 			</p>
-			<h3 class="company"><a href="https://bimble.com">Bimble Ltd</a>, UK</h3>
+			<h3 class="organisation"><a href="https://www.moneyfarm.com">MFM Investment Ltd</a>, <span class="location">UK</span></h3>
 			<details open>
 				<summary title="Show/hide details">
 					<svg class="icon" role="img" aria-label="Toggle"><use xlink:href="#symbol-chevron-down" /></svg>
 				</summary>
-				<h4 class="job-title">Speaker</h4>
+				<h4 class="position">Senior Front-End Developer</h4>
 				<ul>
-					<li>Done stuff</li>
-					<li>Done stuff</li>
-					<li>Done stuff</li>
+					<li>Updated existing user facing Angular based platform to be fully responsive, mobile first and resolution independent</li>
+					<li>Led work on styling, animations, responsive UI, and instructing design department on producing resolution independent vector based iconography and images</li>
+					<li>Collaborated across company departments to produce universal style guidelines and code templates for all company visual presences</li>
+				</ul>
+			</details>
+		</li>
+		<li>
+			<p class="date">
+				<time datetime="252w" title="May 2012 to February 2017, 4 years 10 months">
+					<time datetime="2012-05">2012</time> –
+					<time datetime="2017-02">2017</time>
+				</time>
+			</p>
+			<h3 class="organisation"><a href="https://www.gamesysgroup.com">Gamesys Ltd</a>, <span class="location">UK</span></h3>
+			<details open>
+				<summary title="Show/hide details">
+					<svg class="icon" role="img" aria-label="Toggle"><use xlink:href="#symbol-chevron-down" /></svg>
+				</summary>
+				<p>Part of a successful team of senior engineers assigned the technical leadership and future strategy of customer facing websites.  Designed and developed new web platforms for multiple commercial ventures.</p>
+				<h4 class="position">Senior Front-End Developer - <span class="group">Client Platforms</span></h4>
+				<ul>
+					<li>Instigated work to adapt existing websites for mobile platforms, then prototyped and developed a new fully responsive, isomorphic app platform based on React/Flux</li>
+					<li>Led prototyping, styling and responsive UI development work for each new platform – dramatically reducing new site build time</li>
+					<li>Led the technical development of a new non-gaming business venture and provided technical guidance to other developers on the project</li>
+					<li>Provided internal technical consultancy on mobile and responsive web development, built and promoted HTML/CSS/JavaScript standards and style guides</li>
+					<li>Fostered strong relationships with UX and Design departments and collaborated on new design language for responsive apps</li>
+				</ul>
+			</details>
+		</li>
+		<li>
+			<p class="date">
+				<time datetime="504w" title="September 2002 to April 2012, 9 years 8 months">
+					<time datetime="2002-09">2002</time> –
+					<time datetime="2012-04">2012</time>
+				</time>
+			</p>
+			<h3 class="organisation"><a href="https://www.vodafone.com">Vodafone Group Plc</a>, <span class="location">UK / Germany</span></h3>
+			<details open>
+				<summary title="Show/hide details">
+					<svg class="icon" role="img" aria-label="Toggle"><use xlink:href="#symbol-chevron-down" /></svg>
+				</summary>
+				<p>Held Research and Development roles within Group Technology and Group Strategy departments – global departments responsible for planning and coordinating technology strategy across Vodafone’s national operating companies.</p>
+				<h4 class="position">Technical Lead - <span class="group">Service Platforms, Group Technology</span></h4>
+				<ul>
+					<li>Provided in-house consultancy on web technologies, application UI design and the role of web apps in the mobile app ecosystem</li>
+					<li>Designed and developed mobile web apps including a web-based telecoms platform, a visual conference call platform and a customer focused smart billing platform</li>
+				</ul>
+				<h4 class="position">Developer / Project Manager - <span class="group">Web & Media, Group Technology</span></h4>
+				<ul>
+					<li>Pioneered the development of mobile web apps within Vodafone – led a cross-site international team of developers in building a range of apps</li>
+					<li>Promoted web apps in Vodafone and the developer community through demonstrations at conferences, creating best practice guidelines and mentoring junior developers</li>
+					<li>Vodafone representative to the W3C for Packaged Web Apps</li>
+				</ul>
+				<h4 class="position">Research Engineer - <span class="group">Device Technologies and Multimedia, Group Strategy</span></h4>
+				<ul>
+					<li>Provided technical due diligence on hardware and services from suppliers and start-ups</li>
+					<li>Produced strategy papers and presentations for senior management highlighting the business impact of new technologies and services</li>
+					<li>Managed Vodafone’s involvement in an EU funded audiovisual technologies programme – worked with academia and start-ups, bringing their ideas to senior management</li>
+					<li>Vodafone representative to the DLNA</li>
+				</ul>
+			</details>
+		</li>
+		<li>
+			<p class="date">
+				<time datetime="208w" title="September 1998 to August 2002, 4 years">
+					<time datetime="1998-09">1998</time> –
+					<time datetime="2002-08">2002</time>
+				</time>
+			</p>
+			<h3 class="organisation"><a href="https://www.reading.ac.uk">University of Reading</a>, <span class="location">UK</span></h3>
+			<details open>
+				<summary title="Show/hide details">
+					<svg class="icon" role="img" aria-label="Toggle"><use xlink:href="#symbol-chevron-down" /></svg>
+				</summary>
+				<p>Managed the University’s collaboration on two major EU funded projects – coordinated work from several international teams of developers and built software with European partners.</p>
+				<h4 class="position">Research Fellow - <span class="group">Dept. of Computer Science & Cybernetics</span></h4>
+				<ul>
+					<li>Designed and built a cross-platform application layer networking infrastructure allowing many tens of thousands of software agents to communicate efficiently</li>
+					<li>Lectured on Java networking techniques and creating scalable network infrastructures</li>
+					<li>Supervised undergraduate and postgraduate projects</li>
+					<li>Authored and co-authored several research papers for international conferences</li>
 				</ul>
 			</details>
 		</li>
 	</ol>
+</section>
+
+<section id="education">
+	<h2 class="section-heading">Education</h2>
+	<ol class="timeline" reversed>
+		<li>
+			<p class="date"><time title="Graduated 1998">1998</time></p>
+			<h3 class="position"><span class="qualification">MSc Computer Science & Cybernetics</span> – <span class="institution"><a href="https://www.reading.ac.uk">University of Reading</a>, <span class="location">UK</span></span></h3>
+			<p>Artificial intelligence, computer graphics, user interaction, image processing, software engineering, virtual environments.</p>
+			<p>Thesis: “Overcoming the Effects of Network Latencies in Distributed Synthetic Environments”.</p>
+			<p>Won an EPSRC (Engineering and Physical Sciences Research Council) scholarship.</p>
+		</li>
+		<li>
+			<p class="date"><time title="Graduated 1997">1997</time></p>
+			<h3 class="position"><span class="qualification">BSc (Hons) Physics</span> – <span class="institution"><a href="https://www.birmingham.ac.uk">University of Birmingham</a>, <span class="location">UK</span></span></h3>
+			<p>Applied and theoretical physics, maths, computing, laboratory work, philosophy of science.</p>
+		</li>
+	</ol>
+</section>
+
+<section id="personal-interests">
+	<h2 class="section-heading">Personal Interests</h2>
+	<ul>
+		<li>Sport – distance running to half marathon level, squash, floorball (indoor hockey)</li>
+		<li>Interested in many aspects of design, particularly architecture</li>
+		<li>Promotion of science and technology – organised and ran educational workshops for the British Science Association and the Smallpeice Trust, generating interest in the sciences and promoting careers in software engineering</li>
+	</ul>
 </section>
 
 <section id="references">
