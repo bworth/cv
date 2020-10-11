@@ -479,6 +479,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		for (let i = timelineDetails.length, details; details = timelineDetails[--i];) {
 			details.removeAttribute('open');
 			details.classList.add('show-summary');
+			details.querySelector('summary').addEventListener('click', (event) => event.currentTarget.blur());
 		}
 	}
 
