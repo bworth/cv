@@ -273,6 +273,15 @@ a:not(:hover) {
 	font-style: italic;
 }
 
+@media (any-pointer: coarse) {
+	a[href] {
+		margin-bottom: -0.2rem;
+		margin-top: -0.2rem;
+		padding-bottom: 0.2rem;
+		padding-top: 0.2rem;
+	}
+}
+
 @media screen and (max-width: 937px) {
 	html {
 		font-size: 12px;
