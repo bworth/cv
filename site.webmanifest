@@ -3,7 +3,7 @@
   "short_name": "BW CV",
   "lang": "en-GB",
   "display": "fullscreen",
-  "start_url": "?source=manifest",
+  "start_url": "./?source=manifest",
   "scope": "./",
   "background_color": "#fff",
   "theme_color": "#fff",
@@ -33,27 +33,27 @@
   "shortcuts": [
     {
       "name": "Summary",
-      "url": "?source=manifest#summary"
+      "url": "./?source=manifest#summary"
     },
     {
       "name": "Technical Skills",
-      "url": "?source=manifest#technical-skills"
+      "url": "./?source=manifest#technical-skills"
     },
     {
       "name": "Professional Experience",
-      "url": "?source=manifest#professional-experience"
+      "url": "./?source=manifest#professional-experience"
     },
     {
       "name": "Education",
-      "url": "?source=manifest#education"
+      "url": "./?source=manifest#education"
     },
     {
       "name": "Personal Interests",
-      "url": "?source=manifest#personal-interests"
+      "url": "./?source=manifest#personal-interests"
     },
     {
       "name": "References",
-      "url": "?source=manifest#references"
+      "url": "./?source=manifest#references"
     }
   ]
 }
