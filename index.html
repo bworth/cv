@@ -38,9 +38,7 @@
 
 :root {
 	--color-text: #2d2d2d;
-	/*--color-text-interactive: #1a0dab;*/
 	--color-text-interactive: #1558d6;
-	--color-text-diminished: #aaa;
 	--line-height: 1.5;
 	--section-box-shadow: 0 -1px;
 }
@@ -181,12 +179,8 @@ a:not(:hover) {
 	padding: 0;
 }
 
-.timeline > li {
+.timeline > li:not(:last-child) {
 	margin-bottom: 1rem;
-}
-
-.timeline > li:last-child {
-	margin-bottom: 0;
 }
 
 .timeline .date {
@@ -205,59 +199,48 @@ a:not(:hover) {
 
 .timeline summary {
 	cursor: pointer;
-	display: none;
 	list-style: none;
-	overflow: hidden;
-	padding-left: 1.6rem;
+	padding-right: 2em;
 	perspective: 1em;
-	perspective-origin: calc(0.5em * var(--line-height));
+	perspective-origin: calc(100% - 0.5em * var(--line-height)) calc(0.5em * var(--line-height));
 	position: relative;
-	transition: color 500ms;
+	-webkit-tap-highlight-color: transparent;
 }
 
-.timeline details[open] summary {
-	color: var(--color-text-diminished);
-	margin-bottom: 0.8rem;
-}
-
-.timeline .show-summary summary {
-	display: list-item;
+.timeline summary:active {
+	outline: unset;
 }
 
 .timeline summary::-webkit-details-marker {
 	display: none;
 }
 
-.timeline summary::after {
-	content: 'Show more…';
-}
-
-.timeline details[open] summary::after {
-	content: 'Hide';
-}
-
 .timeline summary .icon {
-	height: calc(1em * var(--line-height) - 1px);
-	left: 0;
+	height: calc(1em * var(--line-height));
 	position: absolute;
-	top: 1px;
+	right: 0;
+	top: 0;
 	transition: transform 500ms;
-	vertical-align: top;
-	width: calc(1em * var(--line-height) - 1px);
+	width: calc(1em * var(--line-height));
+}
+
+.timeline details:not([open]) summary::after {
+	color: var(--color-text-interactive);
+	content: 'More…';
+	font-size: 80%;
+}
+
+.timeline details[open] summary {
+	margin-bottom: 0.8rem;
 }
 
 .timeline details[open] summary .icon {
 	transform: rotateX(-0.5turn);
 }
 
-.timeline details.show-summary[open] p,
-.timeline details.show-summary[open] ul,
-.timeline details.show-summary[open] .position {
+.timeline details[open] ul,
+.timeline details[open] .position {
 	animation: reveal 500ms forwards;
-}
-
-.timeline summary + p {
-	margin-bottom: 0.8rem;
 }
 
 .organisation {
@@ -376,6 +359,14 @@ a:not(:hover) {
 	.print-link[href][data-url]::after {
 		content: attr(data-url);
 	}
+
+	.timeline summary {
+		padding-right: 0;
+	}
+
+	.timeline summary .icon {
+		display: none;
+	}
 }
 </style>
 
@@ -441,12 +432,12 @@ body {
 			</p>
 			<h3 class="organisation"><a href="https://bimble.com">Bimble Ltd</a>, <span class="location">UK</span></h3>
 			<details open>
-				<summary title="Show/hide details">
-					<svg class="icon" role="img" aria-label="Toggle"><use xlink:href="#symbol-chevron-down" /></svg>
+				<summary>
+					Sole front-end developer in a start-up environment with responsibility for development of a responsive, mobile-first website.
+					<svg class="icon" role="img" aria-label="Toggle icon"><use xlink:href="#symbol-chevron-down" /></svg>
 				</summary>
 				<h4 class="position">Front-End Developer</h4>
 				<ul>
-					<li>Sole front-end developer in a start-up environment with responsibility for development of a responsive, mobile-first website</li>
 					<li>Introduced a new React based front-end platform, first public version released within a matter of months</li>
 					<li>Worked closely with design and UX teams to develop an adaptive, cross-device UX</li>
 					<li>Adapted, and extended existing Flask-RESTPlus back-end API library where necessary</li>
@@ -462,12 +453,12 @@ body {
 			</p>
 			<h3 class="organisation"><a href="https://www.moneyfarm.com">MFM Investment Ltd</a>, <span class="location">UK</span></h3>
 			<details open>
-				<summary title="Show/hide details">
-					<svg class="icon" role="img" aria-label="Toggle"><use xlink:href="#symbol-chevron-down" /></svg>
+				<summary>
+					Updated existing user facing Angular based platform to be fully responsive, mobile first and resolution independent.
+					<svg class="icon" role="img" aria-label="Toggle icon"><use xlink:href="#symbol-chevron-down" /></svg>
 				</summary>
 				<h4 class="position">Senior Front-End Developer</h4>
 				<ul>
-					<li>Updated existing user facing Angular based platform to be fully responsive, mobile first and resolution independent</li>
 					<li>Led work on styling, animations, responsive UI, and instructing design department on producing resolution independent vector based iconography and images</li>
 					<li>Collaborated across company departments to produce universal style guidelines and code templates for all company visual presences</li>
 				</ul>
@@ -482,10 +473,10 @@ body {
 			</p>
 			<h3 class="organisation"><a href="https://www.gamesysgroup.com">Gamesys Ltd</a>, <span class="location">UK</span></h3>
 			<details open>
-				<summary title="Show/hide details">
-					<svg class="icon" role="img" aria-label="Toggle"><use xlink:href="#symbol-chevron-down" /></svg>
+				<summary>
+					Part of a successful team of senior engineers assigned the technical leadership and future strategy of customer facing websites.  Designed and developed new web platforms for multiple commercial ventures.
+					<svg class="icon" role="img" aria-label="Toggle icon"><use xlink:href="#symbol-chevron-down" /></svg>
 				</summary>
-				<p>Part of a successful team of senior engineers assigned the technical leadership and future strategy of customer facing websites.  Designed and developed new web platforms for multiple commercial ventures.</p>
 				<h4 class="position">Senior Front-End Developer - <span class="group">Client Platforms</span></h4>
 				<ul>
 					<li>Instigated work to adapt existing websites for mobile platforms, then prototyped and developed a new fully responsive, isomorphic app platform based on React/Flux</li>
@@ -505,10 +496,10 @@ body {
 			</p>
 			<h3 class="organisation"><a href="https://www.vodafone.com">Vodafone Group Plc</a>, <span class="location">UK / Germany</span></h3>
 			<details open>
-				<summary title="Show/hide details">
-					<svg class="icon" role="img" aria-label="Toggle"><use xlink:href="#symbol-chevron-down" /></svg>
+				<summary>
+					Held Research and Development roles within Group Technology and Group Strategy departments – global departments responsible for planning and coordinating technology strategy across Vodafone’s national operating companies.
+					<svg class="icon" role="img" aria-label="Toggle icon"><use xlink:href="#symbol-chevron-down" /></svg>
 				</summary>
-				<p>Held Research and Development roles within Group Technology and Group Strategy departments – global departments responsible for planning and coordinating technology strategy across Vodafone’s national operating companies.</p>
 				<h4 class="position">Technical Lead - <span class="group">Service Platforms, Group Technology</span></h4>
 				<ul>
 					<li>Provided in-house consultancy on web technologies, application UI design and the role of web apps in the mobile app ecosystem</li>
@@ -538,10 +529,10 @@ body {
 			</p>
 			<h3 class="organisation"><a href="https://www.reading.ac.uk">University of Reading</a>, <span class="location">UK</span></h3>
 			<details open>
-				<summary title="Show/hide details">
-					<svg class="icon" role="img" aria-label="Toggle"><use xlink:href="#symbol-chevron-down" /></svg>
+				<summary>
+					Managed the University’s collaboration on two major EU funded projects – coordinated work from several international teams of developers and built software with European partners.
+					<svg class="icon" role="img" aria-label="Toggle icon"><use xlink:href="#symbol-chevron-down" /></svg>
 				</summary>
-				<p>Managed the University’s collaboration on two major EU funded projects – coordinated work from several international teams of developers and built software with European partners.</p>
 				<h4 class="position">Research Fellow - <span class="group">Dept. of Computer Science & Cybernetics</span></h4>
 				<ul>
 					<li>Designed and built a cross-platform application layer networking infrastructure allowing many tens of thousands of software agents to communicate efficiently</li>
@@ -592,7 +583,9 @@ body {
 
 <script>
 window.addEventListener('DOMContentLoaded', () => {
+	const shouldCollapseDetails = Math.max(screen.availWidth, screen.availHeight) < 760;
 	const externalLinks = document.querySelectorAll('a[href^="http://"], a[href^="https://"]');
+	const timelineDetails = document.querySelectorAll('.timeline details');
 
 	for (let i = externalLinks.length, a; a = externalLinks[--i];) {
 		a.setAttribute('target', '_blank');
@@ -600,13 +593,11 @@ window.addEventListener('DOMContentLoaded', () => {
 		a.setAttribute('title','This link will open in a new window');
 	}
 
-	if (Math.max(screen.availWidth, screen.availHeight) < 760) {
-		const timelineDetails = document.querySelectorAll('.timeline details');
+	for (let i = timelineDetails.length, details; details = timelineDetails[--i];) {
+		details.querySelector('summary').addEventListener('mouseup', (event) => event.currentTarget.blur());
 
-		for (let i = timelineDetails.length, details; details = timelineDetails[--i];) {
+		if (shouldCollapseDetails) {
 			details.removeAttribute('open');
-			details.classList.add('show-summary');
-			details.querySelector('summary').addEventListener('click', (event) => event.currentTarget.blur());
 		}
 	}
 
