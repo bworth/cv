@@ -589,6 +589,10 @@ body {
 </footer>
 
 <script>
+if ('serviceWorker' in navigator) {
+	navigator.serviceWorker.register('serviceWorker.js', { scope: './' });
+}
+
 window.addEventListener('DOMContentLoaded', () => {
 	const shouldCollapseDetails = Math.max(screen.availWidth, screen.availHeight) < 760;
 	const externalLinks = document.querySelectorAll('a[href^="http://"], a[href^="https://"]');
