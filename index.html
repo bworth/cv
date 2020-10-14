@@ -134,13 +134,21 @@ a:not(:hover) {
 	margin: 0 0 1rem;
 }
 
-.about {
+.about,
+.about ul {
 	list-style: none;
 	padding: 0;
 }
 
-.about li {
+.about ul,
+.about li,
+.about address,
+.about nav {
 	display: inline;
+}
+
+.about address {
+	font-style: unset;
 }
 
 .about li:not(:last-child) {
@@ -150,11 +158,6 @@ a:not(:hover) {
 .about li:not(:last-child)::after {
 	content: ' •';
 	margin-left: 0.5em;
-}
-
-.about address {
-	display: inline;
-	font-style: unset;
 }
 
 .section-heading {
@@ -305,7 +308,10 @@ a:not(:hover) {
 		margin: 0;
 	}
 
-	.about li {
+	.about ul,
+	.about li,
+	.about address,
+	.about nav {
 		display: block;
 	}
 
@@ -399,10 +405,22 @@ body {
 <header>
 	<h1 class="name">Ben Worthington</h1>
 	<ul class="about">
-		<li><address>Reading, Berkshire, UK</address></li>
-		<li><a href="mailto:bgwcv1@gmail.com">bgwcv1@gmail.com</a></li>
-		<li><a class="print-link" href="https://uk.linkedin.com/in/bgworthington" data-url="uk.linkedin.com/in/bgworthington"><span class="link-name">LinkedIn</span></a></li>
-		<li><a class="print-link" href="https://github.com/bworth" data-url="github.com/bworth"><span class="link-name">GitHub</span></a></li>
+		<li>
+			<address title="Ben Worthington">
+				<ul>
+					<li>Reading, Berkshire, UK</li>
+					<li><a href="mailto:bgwcv1@gmail.com">bgwcv1@gmail.com</a></li>
+				</ul>
+			</address>
+		</li>
+		<li>
+			<nav>
+				<ul>
+					<li><a class="print-link" href="https://uk.linkedin.com/in/bgworthington" data-url="uk.linkedin.com/in/bgworthington"><span class="link-name">LinkedIn</span></a></li>
+					<li><a class="print-link" href="https://github.com/bworth" data-url="github.com/bworth"><span class="link-name">GitHub</span></a></li>
+				</ul>
+			</nav>
+		</li>
 	</ul>
 </header>
 
