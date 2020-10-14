@@ -274,6 +274,12 @@ a:not(:hover) {
 	font-style: italic;
 }
 
+@media (any-hover: none) {
+	a[href]:hover {
+		text-decoration: unset;
+	}
+}
+
 @media (any-hover: hover) {
 	.timeline summary:hover:active {
 		outline: unset;
