@@ -38,7 +38,8 @@
 
 :root {
 	--color-text: #2d2d2d;
-	--color-text-interactive: #1558d6;
+	--color-text-diminished: #5f6368;
+	--color-text-interactive: #3740ff;
 	--line-height: 1.5;
 	--section-box-shadow: 0 -1px;
 }
@@ -210,10 +211,6 @@ a:not(:hover) {
 	-webkit-tap-highlight-color: transparent;
 }
 
-.timeline summary:active {
-	outline: unset;
-}
-
 .timeline summary::-webkit-details-marker {
 	display: none;
 }
@@ -223,14 +220,15 @@ a:not(:hover) {
 	position: absolute;
 	right: 0;
 	top: 0;
-	transition: transform 500ms;
+	transition: color 150ms, transform 500ms;
 	width: calc(1em * var(--line-height));
 }
 
 .timeline details:not([open]) summary::after {
-	color: var(--color-text-interactive);
+	color: var(--color-text-diminished);
 	content: 'More…';
 	font-size: 80%;
+	transition: color 150ms;
 }
 
 .timeline details[open] summary {
@@ -274,6 +272,17 @@ a:not(:hover) {
 .group,
 .institution {
 	font-style: italic;
+}
+
+@media (any-hover: hover) {
+	.timeline summary:hover:active {
+		outline: unset;
+	}
+
+	.timeline summary:hover .icon,
+	.timeline details:not([open]) summary:hover::after {
+		color: var(--color-text-interactive);
+	}
 }
 
 @media (any-pointer: coarse) {
