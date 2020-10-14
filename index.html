@@ -631,19 +631,19 @@ window.addEventListener('DOMContentLoaded', () => {
 	const externalLinks = document.querySelectorAll('a[href^="http://"], a[href^="https://"]');
 	const timelineDetails = document.querySelectorAll('.timeline details');
 
-	for (let i = externalLinks.length, a; a = externalLinks[--i];) {
+	externalLinks.forEach((a) => {
 		a.setAttribute('target', '_blank');
 		a.setAttribute('rel', 'nofollow noopener noreferrer');
 		a.setAttribute('title','This link will open in a new window');
-	}
+	});
 
-	for (let i = timelineDetails.length, details; details = timelineDetails[--i];) {
+	timelineDetails.forEach((details) => {
 		details.querySelector('summary').addEventListener('mouseup', (event) => event.currentTarget.blur());
 
 		if (shouldCollapseDetails) {
 			details.removeAttribute('open');
 		}
-	}
+	});
 
 	window.addEventListener('beforeprint', () => {
 		for (let i = timelineDetails.length, details; details = timelineDetails[--i];) {
