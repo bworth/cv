@@ -1,6 +1,5 @@
-const CACHE_NAME = 'offline';
-const OFFLINE_URLS = ['index.html', './'];
-const VERSION = 1;
+const CACHE_NAME = 'cv-cache-v1';
+const OFFLINE_URLS = ['index.html', './', './?source=pwa'];
 
 self.addEventListener('install', (event) => {
 	const requests = OFFLINE_URLS.map((url) => new Request(url, { cache: 'reload' }));
@@ -13,6 +12,16 @@ self.addEventListener('install', (event) => {
 			})
 			.catch((error) => console.warn('Install event failed.', error))
 		)
+	);
+});
+
+self.addEventListener('activate', (event) => {
+	const activeCacheNames = [CACHE_NAME];
+
+	event.waitUntil(
+		caches.keys()
+			.then((cacheNames) => cacheNames.filter((cacheName) => !activeCacheNames.includes(cacheName)))
+			.then((oldCacheNames) => Promise.all(oldCacheNames.map((oldCacheName) => caches.delete(oldCacheName))))
 	);
 });
 
