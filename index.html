@@ -6,9 +6,6 @@
 <meta name="author" content="Ben Worthington">
 <meta name="description" content="Ben Worthington, a front-end developer’s CV">
 <meta name="keywords" content="HTML, CSS, JavaScript, ECMAScript, React, JSX, Flux, Redux, Sass, SCSS, SVG, Git">
-<meta name="application-name" content="BW CV">
-<meta name="apple-mobile-web-app-title" content="BW CV">
-<meta name="theme-color" content="#fff">
 
 <meta property="og:title" content="Ben Worthington">
 <meta property="og:description" content="A front-end developer’s CV">
@@ -38,7 +35,8 @@
 
 :root {
 	--color-text: #2d2d2d;
-	--color-text-interactive: #1558d6;
+	--color-text-diminished: #5f6368;
+	--color-text-interactive: #3740ff;
 	--line-height: 1.5;
 	--section-box-shadow: 0 -1px;
 }
@@ -91,7 +89,7 @@ footer small {
 p,
 li {
 	break-inside: avoid;
-	margin: 0 0 0.2rem;
+	margin: 0 0 0.4rem;
 }
 
 ol,
@@ -134,13 +132,21 @@ a:not(:hover) {
 	margin: 0 0 1rem;
 }
 
-.about {
+.about,
+.about ul {
 	list-style: none;
 	padding: 0;
 }
 
-.about li {
+.about ul,
+.about li,
+.about address,
+.about nav {
 	display: inline;
+}
+
+.about address {
+	font-style: unset;
 }
 
 .about li:not(:last-child) {
@@ -150,11 +156,6 @@ a:not(:hover) {
 .about li:not(:last-child)::after {
 	content: ' •';
 	margin-left: 0.5em;
-}
-
-.about address {
-	display: inline;
-	font-style: unset;
 }
 
 .section-heading {
@@ -207,10 +208,6 @@ a:not(:hover) {
 	-webkit-tap-highlight-color: transparent;
 }
 
-.timeline summary:active {
-	outline: unset;
-}
-
 .timeline summary::-webkit-details-marker {
 	display: none;
 }
@@ -220,14 +217,15 @@ a:not(:hover) {
 	position: absolute;
 	right: 0;
 	top: 0;
-	transition: transform 500ms;
+	transition: color 150ms, transform 500ms;
 	width: calc(1em * var(--line-height));
 }
 
 .timeline details:not([open]) summary::after {
-	color: var(--color-text-interactive);
+	color: var(--color-text-diminished);
 	content: 'More…';
 	font-size: 80%;
+	transition: color 150ms;
 }
 
 .timeline details[open] summary {
@@ -273,12 +271,30 @@ a:not(:hover) {
 	font-style: italic;
 }
 
+@media (any-hover: none) {
+	a[href]:hover {
+		text-decoration: unset;
+	}
+}
+
+@media (any-hover: hover) {
+	.timeline summary:hover:active {
+		outline: unset;
+	}
+
+	.timeline summary:hover .icon,
+	.timeline details:not([open]) summary:hover::after {
+		color: var(--color-text-interactive);
+	}
+}
+
 @media (any-pointer: coarse) {
 	a[href] {
-		margin-bottom: -0.2rem;
-		margin-top: -0.2rem;
-		padding-bottom: 0.2rem;
-		padding-top: 0.2rem;
+		display: inline-block;
+		margin-bottom: -0.4rem;
+		margin-top: -0.4rem;
+		padding-bottom: 0.4rem;
+		padding-top: 0.4rem;
 	}
 }
 
@@ -305,7 +321,10 @@ a:not(:hover) {
 		margin: 0;
 	}
 
-	.about li {
+	.about ul,
+	.about li,
+	.about address,
+	.about nav {
 		display: block;
 	}
 
@@ -399,10 +418,22 @@ body {
 <header>
 	<h1 class="name">Ben Worthington</h1>
 	<ul class="about">
-		<li><address>Reading, Berkshire, UK</address></li>
-		<li><a href="mailto:bgwcv1@gmail.com">bgwcv1@gmail.com</a></li>
-		<li><a class="print-link" href="https://uk.linkedin.com/in/bgworthington" data-url="uk.linkedin.com/in/bgworthington"><span class="link-name">LinkedIn</span></a></li>
-		<li><a class="print-link" href="https://github.com/bworth" data-url="github.com/bworth"><span class="link-name">GitHub</span></a></li>
+		<li>
+			<address title="Ben Worthington">
+				<ul>
+					<li>Reading, Berkshire, UK</li>
+					<li><a href="mailto:bgwcv1@gmail.com">bgwcv1@gmail.com</a></li>
+				</ul>
+			</address>
+		</li>
+		<li>
+			<nav>
+				<ul>
+					<li><a class="print-link" href="https://uk.linkedin.com/in/bgworthington" data-url="uk.linkedin.com/in/bgworthington"><span class="link-name">LinkedIn</span></a></li>
+					<li><a class="print-link" href="https://github.com/bworth" data-url="github.com/bworth"><span class="link-name">GitHub</span></a></li>
+				</ul>
+			</nav>
+		</li>
 	</ul>
 </header>
 
@@ -444,7 +475,7 @@ body {
 			<details open>
 				<summary>
 					Sole front-end developer in a start-up environment with responsibility for development of a responsive, mobile-first website.
-					<svg class="icon" role="img" aria-label="Toggle icon"><use xlink:href="#symbol-chevron-down" /></svg>
+					<svg class="icon" role="img" aria-label="Toggle"><use xlink:href="#symbol-chevron-down" /></svg>
 				</summary>
 				<h4 class="position">Front-End Developer</h4>
 				<ul>
@@ -462,7 +493,7 @@ body {
 			<details open>
 				<summary>
 					Updated existing user facing Angular based platform to be fully responsive, mobile first and resolution independent.
-					<svg class="icon" role="img" aria-label="Toggle icon"><use xlink:href="#symbol-chevron-down" /></svg>
+					<svg class="icon" role="img" aria-label="Toggle"><use xlink:href="#symbol-chevron-down" /></svg>
 				</summary>
 				<h4 class="position">Senior Front-End Developer</h4>
 				<ul>
@@ -482,7 +513,7 @@ body {
 			<details open>
 				<summary>
 					Part of a successful team of senior engineers assigned the technical leadership and future strategy of customer facing websites.  Designed and developed new web platforms for multiple commercial ventures.
-					<svg class="icon" role="img" aria-label="Toggle icon"><use xlink:href="#symbol-chevron-down" /></svg>
+					<svg class="icon" role="img" aria-label="Toggle"><use xlink:href="#symbol-chevron-down" /></svg>
 				</summary>
 				<h4 class="position">Senior Front-End Developer - <span class="group">Client Platforms</span></h4>
 				<ul>
@@ -505,7 +536,7 @@ body {
 			<details open>
 				<summary>
 					Held Research and Development roles within Group Technology and Group Strategy departments – global departments responsible for planning and coordinating technology strategy across Vodafone’s national operating companies.
-					<svg class="icon" role="img" aria-label="Toggle icon"><use xlink:href="#symbol-chevron-down" /></svg>
+					<svg class="icon" role="img" aria-label="Toggle"><use xlink:href="#symbol-chevron-down" /></svg>
 				</summary>
 				<h4 class="position">Technical Lead - <span class="group">Service Platforms, Group Technology</span></h4>
 				<ul>
@@ -538,7 +569,7 @@ body {
 			<details open>
 				<summary>
 					Managed the University’s collaboration on two major EU funded projects – coordinated work from several international teams of developers and built software with European partners.
-					<svg class="icon" role="img" aria-label="Toggle icon"><use xlink:href="#symbol-chevron-down" /></svg>
+					<svg class="icon" role="img" aria-label="Toggle"><use xlink:href="#symbol-chevron-down" /></svg>
 				</summary>
 				<h4 class="position">Research Fellow - <span class="group">Dept. of Computer Science & Cybernetics</span></h4>
 				<ul>
@@ -590,7 +621,7 @@ body {
 
 <script>
 if ('serviceWorker' in navigator) {
-	navigator.serviceWorker.register('service-worker.js', { scope: './' });
+	navigator.serviceWorker.register('service-worker.js');
 }
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -598,24 +629,22 @@ window.addEventListener('DOMContentLoaded', () => {
 	const externalLinks = document.querySelectorAll('a[href^="http://"], a[href^="https://"]');
 	const timelineDetails = document.querySelectorAll('.timeline details');
 
-	for (let i = externalLinks.length, a; a = externalLinks[--i];) {
+	externalLinks.forEach((a) => {
 		a.setAttribute('target', '_blank');
 		a.setAttribute('rel', 'nofollow noopener noreferrer');
 		a.setAttribute('title','This link will open in a new window');
-	}
+	});
 
-	for (let i = timelineDetails.length, details; details = timelineDetails[--i];) {
+	timelineDetails.forEach((details) => {
 		details.querySelector('summary').addEventListener('mouseup', (event) => event.currentTarget.blur());
 
 		if (shouldCollapseDetails) {
 			details.removeAttribute('open');
 		}
-	}
+	});
 
 	window.addEventListener('beforeprint', () => {
-		for (let i = timelineDetails.length, details; details = timelineDetails[--i];) {
-			details.setAttribute('open', true);
-		}
+		timelineDetails.forEach((details) => details.setAttribute('open', true));
 	});
 
 	setTimeout(() => document.documentElement.classList.add('loaded'));

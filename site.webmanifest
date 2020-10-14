@@ -2,11 +2,11 @@
   "name": "Ben Worthington’s CV",
   "short_name": "BW CV",
   "lang": "en-GB",
-  "display": "fullscreen",
-  "start_url": "./?source=manifest",
+  "display": "standalone",
+  "start_url": "./?source=pwa",
   "scope": "./",
   "background_color": "#fff",
-  "theme_color": "#fff",
+  "theme_color": "#2d2d2d",
   "icons": [
     {
       "src": "images/icon-16.png",
@@ -33,27 +33,27 @@
   "shortcuts": [
     {
       "name": "Summary",
-      "url": "./?source=manifest#summary"
+      "url": "./?source=pwa#summary"
     },
     {
       "name": "Technical Skills",
-      "url": "./?source=manifest#technical-skills"
+      "url": "./?source=pwa#technical-skills"
     },
     {
       "name": "Professional Experience",
-      "url": "./?source=manifest#professional-experience"
+      "url": "./?source=pwa#professional-experience"
     },
     {
       "name": "Education",
-      "url": "./?source=manifest#education"
+      "url": "./?source=pwa#education"
     },
     {
       "name": "Personal Interests",
-      "url": "./?source=manifest#personal-interests"
+      "url": "./?source=pwa#personal-interests"
     },
     {
       "name": "References",
-      "url": "./?source=manifest#references"
+      "url": "./?source=pwa#references"
     }
   ]
 }
