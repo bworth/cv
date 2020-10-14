@@ -1,13 +1,18 @@
+const CACHE_NAME = 'offline';
+const OFFLINE_URLS = ['index.html', './'];
+const VERSION = 1;
+
 self.addEventListener('install', (event) => {
-	const offlineRequest = new Request('index.html');
+	const requests = OFFLINE_URLS.map((url) => new Request(url, { cache: 'reload' }));
 
 	event.waitUntil(
-		fetch(offlineRequest).then((response) => {
-			return caches.open('offline').then((cache) => {
-				console.log('[oninstall] Cached offline page', response.url);
-				return cache.put(offlineRequest, response);
-			});
-		})
+		caches.open(CACHE_NAME).then((cache) => cache.addAll(requests)
+			.then(() => {
+				const urls = requests.map((request) => request.url);
+				console.log('Install event cached offline pages', urls.join(', '));
+			})
+			.catch((error) => console.warn('Install event failed.', error))
+		)
 	);
 });
 
@@ -17,10 +22,8 @@ self.addEventListener('fetch', (event) => {
 	if (request.method === 'GET') {
 		event.respondWith(
 			fetch(request).catch((error) => {
-				console.error('[onfetch] Failed. Serving cached offline fallback ' + error);
-				return caches.open('offline').then((cache) => {
-					return cache.match('index.html');
-				});
+				console.warn('Fetch event failed; serving cached offline fallback.', error);
+				return caches.open(CACHE_NAME).then((cache) => cache.match(OFFLINE_URL));
 			})
 		);
 	}
