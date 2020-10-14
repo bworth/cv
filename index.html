@@ -644,9 +644,7 @@ window.addEventListener('DOMContentLoaded', () => {
 	});
 
 	window.addEventListener('beforeprint', () => {
-		for (let i = timelineDetails.length, details; details = timelineDetails[--i];) {
-			details.setAttribute('open', true);
-		}
+		timelineDetails.forEach((details) => details.setAttribute('open', true));
 	});
 
 	setTimeout(() => document.documentElement.classList.add('loaded'));
