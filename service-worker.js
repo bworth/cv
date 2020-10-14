@@ -8,7 +8,7 @@ self.addEventListener('install', (event) => {
 		caches.open(CACHE_NAME).then((cache) => cache.addAll(requests)
 			.then(() => {
 				const urls = requests.map((request) => request.url);
-				console.log('Install event cached offline pages', urls.join(', '));
+				console.log('Install event cached offline resources', urls.join(', '));
 			})
 			.catch((error) => console.warn('Install event failed.', error))
 		)
@@ -32,7 +32,7 @@ self.addEventListener('fetch', (event) => {
 		event.respondWith(
 			fetch(request).catch((error) => {
 				console.warn('Fetch event failed; serving cached offline fallback.', error);
-				return caches.open(CACHE_NAME).then((cache) => cache.match(OFFLINE_URL));
+				return caches.open(CACHE_NAME).then((cache) => cache.match(request));
 			})
 		);
 	}
