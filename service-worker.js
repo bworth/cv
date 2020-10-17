@@ -1,32 +1,25 @@
 const CACHE_NAME = 'cache-v1';
 const OFFLINE_URLS = ['index.html', './', './?source=pwa'];
 
-function deleteCaches(activeCacheNames) {
+function cleanCaches(activeCacheNames) {
 	return caches.keys()
 		.then((cacheNames) => cacheNames.filter((cacheName) => !activeCacheNames.includes(cacheName)))
 		.then((oldCacheNames) => Promise.all(oldCacheNames.map((oldCacheName) => caches.delete(oldCacheName))));
 }
 
 function fromCache(request, cacheName) {
-	const match = cacheName ? caches.open(cacheName).then((cache) => cache.match(request)) : caches.match(request);
-	return match.then((cachedResponse) => cachedResponse || Promise.reject(new Error('Unable to find', request.url)));
+	return (cacheName ? caches.open(cacheName).then((cache) => cache.match(request)) : caches.match(request))
+		.then((cachedResponse) => cachedResponse || Promise.reject(
+			new Error('Unable to find ' + request.url + (cacheName ? ' in ' + cacheName : ''))
+		));
 }
 
-function fromNetwork(request, cacheName, timeout) {
+function fromNetwork(request, timeout) {
 	return new Promise((fulfill, reject) => {
-		let timeoutID;
-
-		if (timeout) {
-			timeoutID = setTimeout(reject, timeout);
-		}
+		const tid = timeout ? setTimeout(reject, timeout) : undefined;
 
 		fetch(request).then((response) => {
-			clearTimeout(timeoutID);
-
-			if (cacheName) {
-				caches.open(cacheName).then((cache) => cache.put(request, response.clone()));
-			}
-
+			clearTimeout(tid);
 			fulfill(response);
 		}, reject);
 	});
@@ -35,34 +28,38 @@ function fromNetwork(request, cacheName, timeout) {
 function precache(cacheName, requests) {
 	return caches.open(cacheName).then((cache) => cache.addAll(requests)
 		.then(() => {
-			const urls = requests.map((request) => request.url);
-			console.log('[install] event cached resources', urls.join(', '));
+			console.log('[install] cached resources', requests.map((request) => request.url).join(', '));
 			return self.skipWaiting();
 		})
-		.catch((error) => console.warn('[install] event precache failed.', error))
+		.catch((error) => console.warn('[install] precache failed.', error))
 	);
 }
 
 function preferCache(request, cacheName) {
 	return fromCache(request, cacheName)
 		.then((cachedResponse) => {
-			console.log('[fetch] event serving from cache', request.url);
+			console.log('[fetch] serving from cache', request.url);
 			return cachedResponse;
 		})
 		.catch((error) => {
-			console.warn('[fetch] event unable to find cached resource, fetching from network.', error);
-			return fromNetwork(request, cacheName);
+			console.warn('[fetch] unable to find cached resource, fetching from network.', error);
+			return fromNetwork(request).then((response) => updateCache(cacheName, request, response));
 		});
-	});
 }
 
 function preferNetwork(request, cacheName, timeout) {
-	return fromNetwork(request, cacheName, timeout).catch((error) => {
-		console.warn('[fetch] event failed; serving cached fallback.', error);
-		return fromCache(request, cacheName).catch(() => {
-			console.warn('[fetch] event unable to find cached resource.', error);
+	return fromNetwork(request, timeout)
+		.then((response) => updateCache(cacheName, request, response))
+		.catch((error) => {
+			console.warn('[fetch] failed; serving cached fallback.', error);
+			return fromCache(request, cacheName).catch(() => {
+				console.warn('[fetch] unable to find cached resource.', error);
+			});
 		});
-	});
+}
+
+function updateCache(cacheName, request, response) {
+	caches.open(cacheName).then((cache) => cache.put(request, response.clone())).then(() => response);
 }
 
 self.addEventListener('install', (event) => {
@@ -74,8 +71,8 @@ self.addEventListener('install', (event) => {
 self.addEventListener('activate', (event) => {
 	const activeCacheNames = [CACHE_NAME];
 
-	event.waitUntil(deleteCaches(activeCacheNames).then(() => {
-		console.log('[activate] event claiming control with', activeCacheNames.join(', '));
+	event.waitUntil(cleanCaches(activeCacheNames).then(() => {
+		console.log('[activate] claiming control with', activeCacheNames.join(', '));
 		return self.clients.claim();
 	}));
 });
