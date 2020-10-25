@@ -2,10 +2,10 @@
   "name": "Ben Worthington’s CV",
   "short_name": "BW CV",
   "lang": "en-GB",
-  "display": "standalone",
   "start_url": "./?source=pwa",
-  "background_color": "#fff",
+  "display": "standalone",
   "theme_color": "#fff",
+  "background_color": "#fff",
   "icons": [
     {
       "src": "images/icon-16.png",
