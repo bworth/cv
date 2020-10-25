@@ -4,9 +4,8 @@
   "lang": "en-GB",
   "display": "standalone",
   "start_url": "./?source=pwa",
-  "scope": "./",
   "background_color": "#fff",
-  "theme_color": "#2d2d2d",
+  "theme_color": "#fff",
   "icons": [
     {
       "src": "images/icon-16.png",
@@ -38,27 +37,33 @@
   "shortcuts": [
     {
       "name": "Summary",
-      "url": "./?source=pwa#summary"
+      "url": "./?source=pwa#summary",
+      "icons": [{ "src": "images/icon-section.png", "sizes": "192x192" }]
     },
     {
       "name": "Technical Skills",
-      "url": "./?source=pwa#technical-skills"
+      "url": "./?source=pwa#technical-skills",
+      "icons": [{ "src": "images/icon-section.png", "sizes": "192x192" }]
     },
     {
       "name": "Professional Experience",
-      "url": "./?source=pwa#professional-experience"
+      "url": "./?source=pwa#professional-experience",
+      "icons": [{ "src": "images/icon-section.png", "sizes": "192x192" }]
     },
     {
       "name": "Education",
-      "url": "./?source=pwa#education"
+      "url": "./?source=pwa#education",
+      "icons": [{ "src": "images/icon-section.png", "sizes": "192x192" }]
     },
     {
       "name": "Personal Interests",
-      "url": "./?source=pwa#personal-interests"
+      "url": "./?source=pwa#personal-interests",
+      "icons": [{ "src": "images/icon-section.png", "sizes": "192x192" }]
     },
     {
       "name": "References",
-      "url": "./?source=pwa#references"
+      "url": "./?source=pwa#references",
+      "icons": [{ "src": "images/icon-section.png", "sizes": "192x192" }]
     }
   ]
 }
