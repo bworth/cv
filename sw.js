@@ -1,5 +1,5 @@
 const CACHE_NAME = 'cache-v1';
-const OFFLINE_URLS = ['index.html', './', './?source=pwa'];
+const PRECACHE_URLS = ['index.html', './', './?source=pwa'];
 
 function responseFallback(title) {
 	return `
@@ -100,7 +100,7 @@ function useFallback(title) {
 }
 
 self.addEventListener('install', (event) => {
-	const requests = OFFLINE_URLS.map((url) => new Request(url, { cache: 'reload' }));
+	const requests = PRECACHE_URLS.map((url) => new Request(url, { cache: 'reload' }));
 
 	event.waitUntil(precache(CACHE_NAME, requests).then(() => self.skipWaiting()));
 });
