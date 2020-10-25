@@ -3,13 +3,13 @@ const PRECACHE_URLS = ['index.html', './', './?source=pwa'];
 
 function responseFallback(title) {
 	return `
-		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 180" stroke-linejoin="round">
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" stroke-linejoin="round">
 			<title>${ title }</title>
-			<path stroke="#ddd" stroke-width="25" d="M99 18L15 162h168z"/>
-			<path fill="#fff" stroke="#eee" stroke-width="17" d="M99 18L15 162h168z"/>
+			<path stroke="#ddd" stroke-width="25" d="M199 128L115 272h168z" />
+			<path fill="#fff" stroke="#eee" stroke-width="17" d="M199 128L115 272h168z" />
 			<g fill="#aaa">
-				<path d="M91 70a9 9 0 0118 0l-5 50a4 4 0 01-8 0z"/>
-				<circle cx="100" cy="138" r="9"/>
+				<path d="M191 180a9 9 0 0118 0l-5 50a4 4 0 01-8 0z" />
+				<circle cx="200" cy="248" r="9" />
 			</g>
 		</svg>
 	`;
