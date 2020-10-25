@@ -45,7 +45,7 @@ function fromNetwork(request, timeout) {
 		fetch(request).then((response) => {
 			clearTimeout(tid);
 
-			if (response.ok) {
+			if (response.status < 500) {
 				fulfill(response);
 			} else {
 				reject(networkStatusError(request, response));
@@ -62,30 +62,41 @@ function preferCache(request, cacheName) {
 	return fromCache(request, cacheName).catch((error) => {
 		console.warn(error);
 
-		return fromNetwork(request);
+		return fromNetwork(request).catch((error) => {
+			console.warn(error);
+
+			return useFallback('Network error');
+		});
 	});
 }
 
 function preferNetwork(request, cacheName, timeout) {
 	return fromNetwork(request, timeout)
-		.then((response) => {
-			updateCache(cacheName, request, response.clone());
-
-			return response;
-		})
+		.then((response) => updateCache(cacheName, request, response))
 		.catch((error) => {
 			console.warn(error);
 
-			return fromCache(request, cacheName);
+			return fromCache(request, cacheName).catch((error) => {
+				console.warn(error);
+
+				return useFallback('Cache match error');
+			});
 		});
 }
 
 function updateCache(cacheName, request, response) {
-	caches.open(cacheName).then((cache) => cache.put(request, response));
+	if (response.ok) {
+		return caches.open(cacheName).then((cache) => {
+			cache.put(request, response.clone());
+			return response;
+		});
+	} else {
+		return response;
+	}
 }
 
 function useFallback(title) {
-	return Promise.resolve(new Response(responseFallback(title), { headers: { 'Content-Type': 'image/svg+xml' } }));
+	return new Response(responseFallback(title), { headers: { 'Content-Type': 'image/svg+xml' } });
 }
 
 self.addEventListener('install', (event) => {
@@ -104,7 +115,7 @@ self.addEventListener('fetch', (event) => {
 	const { request } = event;
 
 	if (request.method === 'GET') {
-		event.respondWith(preferCache(request, CACHE_NAME).catch(() => useFallback('Network error')));
-		event.waitUntil(fromNetwork(request).then((response) => updateCache(CACHE_NAME, request, response)));
+		event.respondWith(preferCache(request, CACHE_NAME));
+		event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.add(request)));
 	}
 });
