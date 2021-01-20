@@ -132,28 +132,28 @@ a:not(:hover) {
 	margin: 0 0 1rem;
 }
 
-.about,
-.about ul {
-	list-style: none;
-	padding: 0;
-}
-
-.about ul,
-.about li,
-.about address,
-.about nav {
+header ul,
+header li,
+header address,
+header nav {
 	display: inline;
 }
 
-.about address {
+header ul {
+	padding: 0;
+}
+
+header address {
 	font-style: unset;
 }
 
-.about li:not(:last-child) {
+header address ul,
+header li:not(:last-child) {
 	margin: 0 0.5em 0 0;
 }
 
-.about li:not(:last-child)::after {
+header address ul::after,
+header li:not(:last-child)::after {
 	content: ' •';
 	margin-left: 0.5em;
 }
@@ -321,21 +321,6 @@ a:not(:hover) {
 		margin: 0;
 	}
 
-	.about ul,
-	.about li,
-	.about address,
-	.about nav {
-		display: block;
-	}
-
-	.about li:not(:last-child) {
-		margin: 0 0 0.8rem 0;
-	}
-
-	.about li:not(:last-child)::after {
-		content: unset;
-	}
-
 	.section-heading ~ p,
 	.section-heading ~ ul,
 	.timeline .date ~ p,
@@ -417,24 +402,18 @@ body {
 
 <header>
 	<h1 class="name">Ben Worthington</h1>
-	<ul class="about">
-		<li>
-			<address title="Ben Worthington">
-				<ul>
-					<li>Reading, Berkshire, UK</li>
-					<li><a href="mailto:bgwcv1@gmail.com">bgwcv1@gmail.com</a></li>
-				</ul>
-			</address>
-		</li>
-		<li>
-			<nav>
-				<ul>
-					<li><a class="print-link" href="https://uk.linkedin.com/in/bgworthington" data-url="uk.linkedin.com/in/bgworthington"><span class="link-name">LinkedIn</span></a></li>
-					<li><a class="print-link" href="https://github.com/bworth" data-url="github.com/bworth"><span class="link-name">GitHub</span></a></li>
-				</ul>
-			</nav>
-		</li>
-	</ul>
+	<address title="Ben Worthington">
+		<p>Reading, Berkshire, UK</p>
+		<ul>
+			<li><a href="mailto:bgwcv1@gmail.com" title="Email me">bgwcv1@gmail.com</a></li>
+		</ul>
+	</address>
+	<nav>
+		<ul>
+			<li><a class="print-link" href="https://uk.linkedin.com/in/bgworthington" data-url="uk.linkedin.com/in/bgworthington"><span class="link-name">LinkedIn</span></a></li>
+			<li><a class="print-link" href="https://github.com/bworth" data-url="github.com/bworth"><span class="link-name">GitHub</span></a></li>
+		</ul>
+	</nav>
 </header>
 
 <section id="summary">
