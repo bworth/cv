@@ -116,6 +116,9 @@ self.addEventListener('fetch', (event) => {
 
 	if (request.method === 'GET') {
 		event.respondWith(preferCache(request, CACHE_NAME));
-		event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.add(request)));
+		event.waitUntil(caches.open(CACHE_NAME)
+			.then((cache) => cache.add(request))
+			.catch(() => console.warn)
+		);
 	}
 });
