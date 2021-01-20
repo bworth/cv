@@ -661,7 +661,10 @@ window.addEventListener('DOMContentLoaded', () => {
 	externalLinks.forEach((a) => {
 		a.setAttribute('target', '_blank');
 		a.setAttribute('rel', 'nofollow noopener noreferrer');
-		a.setAttribute('title','This link will open in a new window');
+
+		if (!a.hasAttribute('title')) {
+			a.setAttribute('title', 'This link will open in a new window');
+		}
 	});
 
 	timelineDetails.forEach((details) => {
