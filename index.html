@@ -41,19 +41,21 @@
 }
 
 :root {
-	--color-text: #2d2d2d;
-	--color-text-diminished: #5f6368;
-	--color-text-interactive: #3740ff;
+	--color: #2d2d2d;
+	--color-diminished: #5f6368;
+	--color-interactive: #3740ff;
+	--font-family: verdana, sans-serif;
+	--font-size: 14px;
 	--line-height: 1.5;
 	--section-box-shadow: 0 -1px;
+	--transition-duration: 150ms;
 }
 
 html {
 	background-color: #ddd;
-	font-family: verdana, sans-serif;
-	font-size: 14px;
-	line-height: var(--line-height);
+	font: var(--font-size) / var(--line-height) var(--font-family);
 	-webkit-text-size-adjust: 100%;
+	text-size-adjust: none;
 }
 
 html.loaded body {
@@ -64,7 +66,7 @@ body {
 	background-color: #fff;
 	box-shadow: 0 2px 5px 2px rgba(0, 0, 0, 0.2);
 	box-sizing: border-box;
-	color: var(--color-text);
+	color: var(--color);
 	margin: 1rem auto;
 	opacity: 0;
 	padding: 7rem 5.4rem;
@@ -113,11 +115,15 @@ li:last-child {
 }
 
 a[href] {
-	color: var(--color-text-interactive);
+	color: var(--color-interactive);
 }
 
 a:not(:hover) {
 	text-decoration: unset;
+}
+
+abbr[title] {
+	cursor: help;
 }
 
 .icon {
@@ -180,6 +186,10 @@ header li:not(:last-child)::after {
 	padding: 0;
 }
 
+.timeline > li {
+	break-inside: unset;
+}
+
 .timeline > li:not(:last-child) {
 	margin-bottom: 1rem;
 }
@@ -196,6 +206,16 @@ header li:not(:last-child)::after {
 .timeline .date ~ ul,
 .timeline details > ul {
 	list-style-type: initial;
+}
+
+.timeline details {
+	height: calc(var(--height-closed) * 1px);
+	/* Non hardware accelerated and modifies layout, so may be not be a smooth transition */
+	transition: height calc(100ms + (var(--height-open) - var(--height-closed)) * 0.5ms);
+}
+
+.timeline details[open] {
+	height: calc(var(--height-open) * 1px);
 }
 
 .timeline summary {
@@ -222,7 +242,7 @@ header li:not(:last-child)::after {
 }
 
 .timeline details:not([open]) summary::after {
-	color: var(--color-text-diminished);
+	color: var(--color-diminished);
 	content: 'More…';
 	font-size: 80%;
 	transition: color 150ms;
@@ -238,7 +258,7 @@ header li:not(:last-child)::after {
 
 .timeline details[open] > ul,
 .timeline details[open] .position {
-	animation: reveal 500ms forwards;
+	animation: reveal 500ms ease-out;
 }
 
 .organisation {
@@ -271,12 +291,6 @@ header li:not(:last-child)::after {
 	font-style: italic;
 }
 
-@media (any-hover: none) {
-	a[href]:hover {
-		text-decoration: unset;
-	}
-}
-
 @media (any-hover: hover) {
 	.timeline summary:hover:active {
 		outline: unset;
@@ -284,7 +298,19 @@ header li:not(:last-child)::after {
 
 	.timeline summary:hover .icon,
 	.timeline details:not([open]) summary:hover::after {
-		color: var(--color-text-interactive);
+		color: var(--color-interactive);
+	}
+}
+
+@media (any-hover: none) {
+	/* Reset hover styles for non hover devices */
+	a[href]:hover,
+	abbr[title] {
+		text-decoration: unset;
+	}
+
+	abbr[title]::after {
+		content: ' (' attr(title) ')';
 	}
 }
 
@@ -295,6 +321,17 @@ header li:not(:last-child)::after {
 		margin-top: -0.4rem;
 		padding-bottom: 0.4rem;
 		padding-top: 0.4rem;
+	}
+}
+
+@media (prefers-reduced-motion) {
+	.timeline details[open] > ul,
+	.timeline details[open] .position {
+		animation: unset;
+	}
+
+	.timeline details {
+		transition: unset;
 	}
 }
 
@@ -366,6 +403,14 @@ header li:not(:last-child)::after {
 		color: unset;
 	}
 
+	abbr[title] {
+		text-decoration: unset;
+	}
+
+	abbr[title]::after {
+		content: ' (' attr(title) ')';
+	}
+
 	.print-link[href][data-url] .link-name {
 		display: none;
 	}
@@ -380,6 +425,11 @@ header li:not(:last-child)::after {
 
 	.timeline summary .icon {
 		display: none;
+	}
+
+	.timeline details,
+	.timeline details[open] {
+		height: unset;
 	}
 }
 </style>
@@ -418,7 +468,7 @@ body {
 
 <section id="summary">
 	<h2 class="section-heading">Summary</h2>
-	<p>Senior Front-End Developer with over eight years experience building high quality responsive web applications across mobile and desktop platforms.</p>
+	<p>Senior front-end developer with over eight years experience building high quality responsive web applications across mobile and desktop platforms.</p>
 	<p>Always applies a creative, logical and consistent approach to both software development and building user interfaces.</p>
 	<p>Conscious of demand for efficiency, performance and rapid development versus code reusability, sustainability and use of best practices.</p>
 	<p>Highly motivated to learn new skills with a strong interest in future web technologies.</p>
@@ -445,20 +495,20 @@ body {
 	<ol class="timeline" reversed>
 		<li>
 			<p class="date">
-				<time datetime="68w" title="June 2019 to present, 1 year 5 months">
+				<time datetime="86w" title="June 2019 to present, 1 year 8 months">
 					<time datetime="2019-06">2019</time> –
-					<time datetime="2020-10">present</time>
+					<time datetime="2021-01">present</time>
 				</time>
 			</p>
 			<h3 class="organisation"><a href="https://bimble.com">Bimble Ltd</a>, <span class="location">UK</span></h3>
 			<details open>
 				<summary>
-					Sole front-end developer in a start-up environment with responsibility for development of a responsive, mobile-first website.
+					Senior front-end developer in a start-up environment. Situated within a team of developers building a full-stack web platform and mobile apps. Responsibile for the development of a responsive, mobile-first website, and reviewing and testing code.
 					<svg class="icon" role="img" aria-label="Toggle"><use href="#symbol-chevron-down" /></svg>
 				</summary>
-				<h4 class="position">Front-End Developer</h4>
+				<h4 class="position">Senior Front-End Developer</h4>
 				<ul>
-					<li>Introduced a new React based front-end platform, first public version released within a matter of months</li>
+					<li>Introduced a new React based front-end platform to replace a legacy platform, first public version released within a matter of months</li>
 					<li>Worked closely with design and UX teams to develop an adaptive, cross-device UX</li>
 					<li>Adapted, and extended existing Flask-RESTPlus back-end API library where necessary</li>
 				</ul>
@@ -491,7 +541,7 @@ body {
 			<h3 class="organisation"><a href="https://www.gamesysgroup.com">Gamesys Ltd</a>, <span class="location">UK</span></h3>
 			<details open>
 				<summary>
-					Part of a successful team of senior engineers assigned the technical leadership and future strategy of customer facing websites.  Designed and developed new web platforms for multiple commercial ventures.
+					Part of a successful team of senior engineers assigned the technical leadership and future strategy of customer facing websites. Designed and developed new web platforms for multiple commercial ventures.
 					<svg class="icon" role="img" aria-label="Toggle"><use href="#symbol-chevron-down" /></svg>
 				</summary>
 				<h4 class="position">Senior Front-End Developer — <span class="group">Client Platforms</span></h4>
@@ -526,14 +576,14 @@ body {
 				<ul>
 					<li>Pioneered the development of mobile web apps within Vodafone — led a cross-site international team of developers in building a range of apps</li>
 					<li>Promoted web apps in Vodafone and the developer community through demonstrations at conferences, creating best practice guidelines and mentoring junior developers</li>
-					<li>Vodafone representative to the W3C for Packaged Web Apps</li>
+					<li>Vodafone representative to the <a href="https://www.w3.org">W3C</a> for <a href="https://www.w3.org/groups/wg/webapps-old">Web Applications</a> and its predecessor <a href="https://www.w3.org/groups/wg/appformats">Packaged Web Applications (Widgets)</a></li>
 				</ul>
 				<h4 class="position">Research Engineer — <span class="group">Device Technologies and Multimedia, Group Strategy</span></h4>
 				<ul>
 					<li>Provided technical due diligence on hardware and services from suppliers and start-ups</li>
 					<li>Produced strategy papers and presentations for senior management highlighting the business impact of new technologies and services</li>
 					<li>Managed Vodafone’s involvement in an EU funded audiovisual technologies programme — worked with academia and start-ups, bringing their ideas to senior management</li>
-					<li>Vodafone representative to the DLNA</li>
+					<li>Vodafone representative to the <a href="https://www.dlna.org"><abbr title="Digital Living Network Alliance">DLNA</abbr></a></li>
 				</ul>
 			</details>
 		</li>
@@ -547,7 +597,7 @@ body {
 			<h3 class="organisation"><a href="https://www.reading.ac.uk">University of Reading</a>, <span class="location">UK</span></h3>
 			<details open>
 				<summary>
-					Managed the University’s collaboration on two major EU funded projects — coordinated work from several international teams of developers and built software with European partners.
+					Managed the University’s collaboration on two major EU funded projects: <a href="https://cordis.europa.eu/project/id/IST-1999-11488">COMRIS</a> and <a href="https://cordis.europa.eu/project/id/25500">PING</a> — coordinated work from several international teams of developers and built software with European partners.
 					<svg class="icon" role="img" aria-label="Toggle"><use href="#symbol-chevron-down" /></svg>
 				</summary>
 				<h4 class="position">Research Fellow — <span class="group">Dept. of Computer Science & Cybernetics</span></h4>
@@ -555,7 +605,7 @@ body {
 					<li>Designed and built a cross-platform application layer networking infrastructure allowing many tens of thousands of software agents to communicate efficiently</li>
 					<li>Lectured on Java networking techniques and creating scalable network infrastructures</li>
 					<li>Supervised undergraduate and postgraduate projects</li>
-					<li>Authored and co-authored several research papers for international conferences</li>
+					<li>Authored and co-authored <a href="https://www.researchgate.net/scientific-contributions/B-G-Worthington-2006784853">research papers</a> for international conferences and publications</li>
 				</ul>
 			</details>
 		</li>
@@ -569,8 +619,8 @@ body {
 			<p class="date"><time title="Graduated 1998">1998</time></p>
 			<h3 class="position"><span class="qualification">MSc Computer Science & Cybernetics</span> — <span class="institution"><a href="https://www.reading.ac.uk">University of Reading</a>, <span class="location">UK</span></span></h3>
 			<p>Artificial intelligence, computer graphics, user interaction, image processing, software engineering, virtual environments.</p>
-			<p>Thesis: “Overcoming the Effects of Network Latencies in Distributed Synthetic Environments”.</p>
-			<p>Won an EPSRC (Engineering and Physical Sciences Research Council) scholarship.</p>
+			<p>Thesis: <q>Overcoming the Effects of Network Latencies in Distributed Synthetic Environments</q>.</p>
+			<p>Won an <a href="https://epsrc.ukri.org"><abbr title="Engineering and Physical Sciences Research Council">EPSRC</abbr></a> scholarship.</p>
 		</li>
 		<li>
 			<p class="date"><time title="Graduated 1997">1997</time></p>
@@ -585,7 +635,7 @@ body {
 	<ul>
 		<li>Sport — distance running to half marathon level, squash, floorball (indoor hockey)</li>
 		<li>Interested in many aspects of design, particularly architecture</li>
-		<li>Promotion of science and technology — organised and ran educational workshops for the British Science Association and the Smallpeice Trust, generating interest in the sciences and promoting careers in software engineering</li>
+		<li>Promotion of science and technology — organised and ran educational workshops for the <a href="https://www.britishscienceassociation.org">British Science Association</a> and the <a href="https://www.smallpeicetrust.org.uk">Smallpeice Trust</a>, generating interest in the sciences and promoting careers in software engineering</li>
 	</ul>
 </section>
 
