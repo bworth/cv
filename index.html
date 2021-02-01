@@ -28,7 +28,17 @@
 <title>Ben Worthington’s CV</title>
 
 <style>
-@keyframes reveal {
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: unset;
+	}
+}
+
+@keyframes fade-in-and-down {
 	from {
 		opacity: 0;
 		transform: translateY(-1rem);
@@ -58,19 +68,14 @@ html {
 	text-size-adjust: none;
 }
 
-html.loaded body {
-	opacity: 1;
-}
-
 body {
+	animation: fade-in 250ms 250ms ease-out backwards;
 	background-color: #fff;
 	box-shadow: 0 2px 5px 2px rgba(0, 0, 0, 0.2);
 	box-sizing: border-box;
 	color: var(--color);
 	margin: 1rem auto;
-	opacity: 0;
 	padding: 7rem 5.4rem;
-	transition: opacity 250ms 250ms;
 	width: 65rem;
 }
 
@@ -258,7 +263,7 @@ header li:not(:last-child)::after {
 
 .timeline details[open] > ul,
 .timeline details[open] .position {
-	animation: reveal 500ms ease-out;
+	animation: fade-in-and-down 500ms ease-out;
 }
 
 .organisation {
@@ -433,14 +438,6 @@ header li:not(:last-child)::after {
 	}
 }
 </style>
-
-<noscript>
-<style>
-body {
-	opacity: 1;
-}
-</style>
-</noscript>
 </head>
 
 <body>
@@ -714,8 +711,6 @@ window.addEventListener('DOMContentLoaded', () => {
 			timelineDetails.forEach(setDetailsHeightProperties);
 		}
 	});
-
-	setTimeout(() => document.documentElement.classList.add('loaded'));
 });
 </script>
 </body>
