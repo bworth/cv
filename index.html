@@ -233,6 +233,10 @@ header li:not(:last-child)::after {
 	-webkit-tap-highlight-color: transparent;
 }
 
+.timeline summary:focus:not(:focus-visible) {
+	outline: unset;
+}
+
 .timeline summary::-webkit-details-marker {
 	display: none;
 }
@@ -658,7 +662,7 @@ function setDetailsHeightProperties(details) {
 function toggleDetails(details) {
 	// Correct height for open/closed state can only be set when in that state
 	if (details.open) {
-		// Requires `overflow: hidden` to calculate correct height, but setting this permanently obscures the focus ring
+		// Requires `overflow: hidden;` to calculate height, but setting this permanently in CSS obscures the focus ring
 		details.style.overflow = 'hidden';
 		details.style.setProperty('--height-open', details.scrollHeight);
 		details.style.overflow = '';
@@ -687,7 +691,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	timelineDetails.forEach((details) => {
 		details.addEventListener('toggle', () => toggleDetails(details));
-		// Prevent focus ring persistence
+		// Prevent focus ring persistence (can be removed once `:focus-visible` becomes more prevalent)
 		details.querySelector('summary').addEventListener('mouseup', (event) => event.currentTarget.blur());
 
 		if (isSmallDevice) {
