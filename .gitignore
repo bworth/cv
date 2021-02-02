@@ -1,7 +1,7 @@
 node_modules
 
 archive
-build
+#build
 coverage
 
 .DS_Store
