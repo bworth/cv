@@ -5,7 +5,7 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
-  # Allows running this workflow manually from the Actions tab
+  # Allow running this workflow manually from the Actions tab
   workflow_dispatch:
 
 # One or more jobs that can run sequentially or in parallel
@@ -14,16 +14,18 @@ jobs:
     name: Build for deployment
     runs-on: ubuntu-latest
     steps:
-      # Checks-out the repository under $GITHUB_WORKSPACE
+      # Check-out the repository under $GITHUB_WORKSPACE
       - uses: actions/checkout@v2
         with:
           ref: ${{github.event.pull_request.head.ref}}
       - uses: actions/setup-node@v2
         with:
           node-version: '12'
+      # Build, copy `build` folder contents into `docs` folder for GitHub Pages, and commit
       - run: |
           npm install
           npm run build
+          cp -r build/ docs/
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
