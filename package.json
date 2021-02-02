@@ -1,0 +1,48 @@
+{
+  "name": "cv",
+  "version": "1.0.0",
+  "description": "Ben Worthington, a front-end developer’s CV.",
+  "author": "Ben Worthington",
+  "license": "MIT",
+  "keywords": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "ECMAScript",
+    "React",
+    "JSX",
+    "Flux",
+    "Redux",
+    "Sass",
+    "SCSS",
+    "SVG",
+    "Git"
+  ],
+  "scripts": {
+    "build": "gulp build && gulp inlineSources",
+    "dev": "gulp dev",
+    "lint": "gulp lint",
+    "start": "gulp",
+    "test": "gulp test"
+  },
+  "homepage": "https://bworth.github.io/cv/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://bworth@github.com/bworth/cv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bworth/cv/issues"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/register": "^7.12.10",
+    "gulp": "^4.0.2",
+    "tasks": "git+https://github.com/bworth/tasks.git"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  }
+}
