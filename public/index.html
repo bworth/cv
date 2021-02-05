@@ -24,7 +24,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="images/icon-192.png" />
 <link rel="icon" type="image/png" sizes="512x512" href="images/icon-512.png" />
 <link rel="apple-touch-icon" href="images/icon-192-maskable.png" />
-<link rel="stylesheet" href="main.css" />
+<link rel="stylesheet" href="main.css" inline />
 
 <title>Ben Worthington’s CV</title>
 </head>
@@ -36,7 +36,7 @@
 	</symbol>
 </svg>
 
-<header>
+<header class="header">
 	<h1 class="name">Ben Worthington</h1>
 	<address title="Ben Worthington">
 		<p>Reading, Berkshire, UK</p>
@@ -80,15 +80,15 @@
 	<h2 class="section-heading">Professional Experience</h2>
 	<ol class="timeline" reversed>
 		<li>
-			<p class="date">
+			<p class="timeline-date">
 				<time datetime="90w" title="June 2019 to present, 1 year 9 months">
 					<time datetime="2019-06">2019</time> –
 					<time datetime="2021-02">present</time>
 				</time>
 			</p>
 			<h3 class="organisation"><a href="https://bimble.com">Bimble Ltd</a>, <span class="location">UK</span></h3>
-			<details open>
-				<summary>
+			<details class="timeline-details" open>
+				<summary class="timeline-summary">
 					Senior front-end developer in a start-up environment. Situated within a team of developers building a full-stack web platform and mobile apps. Responsible for the development of a responsive, mobile-first website.
 					<svg class="icon" role="img" aria-label="Toggle"><use href="#symbol-chevron-down" /></svg>
 				</summary>
@@ -101,12 +101,12 @@
 			</details>
 		</li>
 		<li>
-			<p class="date">
+			<p class="timeline-date">
 				<time datetime="26w" title="May 2017 to October 2017, 6 months">2017</time>
 			</p>
 			<h3 class="organisation"><a href="https://www.moneyfarm.com">MFM Investment Ltd</a>, <span class="location">UK</span></h3>
-			<details open>
-				<summary>
+			<details class="timeline-details" open>
+				<summary class="timeline-summary">
 					Updated existing user facing Angular based platform to be fully responsive, mobile first and resolution independent.
 					<svg class="icon" role="img" aria-label="Toggle"><use href="#symbol-chevron-down" /></svg>
 				</summary>
@@ -118,15 +118,15 @@
 			</details>
 		</li>
 		<li>
-			<p class="date">
+			<p class="timeline-date">
 				<time datetime="252w" title="May 2012 to February 2017, 4 years 10 months">
 					<time datetime="2012-05">2012</time> –
 					<time datetime="2017-02">2017</time>
 				</time>
 			</p>
 			<h3 class="organisation"><a href="https://www.gamesysgroup.com">Gamesys Ltd</a>, <span class="location">UK</span></h3>
-			<details open>
-				<summary>
+			<details class="timeline-details" open>
+				<summary class="timeline-summary">
 					Part of a successful team of senior engineers assigned the technical leadership and future strategy of customer facing websites. Designed and developed new web platforms for multiple commercial ventures.
 					<svg class="icon" role="img" aria-label="Toggle"><use href="#symbol-chevron-down" /></svg>
 				</summary>
@@ -141,15 +141,15 @@
 			</details>
 		</li>
 		<li>
-			<p class="date">
+			<p class="timeline-date">
 				<time datetime="504w" title="September 2002 to April 2012, 9 years 8 months">
 					<time datetime="2002-09">2002</time> –
 					<time datetime="2012-04">2012</time>
 				</time>
 			</p>
 			<h3 class="organisation"><a href="https://www.vodafone.com">Vodafone Group Plc</a>, <span class="location">UK / Germany</span></h3>
-			<details open>
-				<summary>
+			<details class="timeline-details" open>
+				<summary class="timeline-summary">
 					Held Research and Development roles within Group Technology and Group Strategy departments — global departments responsible for planning and coordinating technology strategy across Vodafone’s national operating companies.
 					<svg class="icon" role="img" aria-label="Toggle"><use href="#symbol-chevron-down" /></svg>
 				</summary>
@@ -174,15 +174,15 @@
 			</details>
 		</li>
 		<li>
-			<p class="date">
+			<p class="timeline-date">
 				<time datetime="208w" title="September 1998 to August 2002, 4 years">
 					<time datetime="1998-09">1998</time> –
 					<time datetime="2002-08">2002</time>
 				</time>
 			</p>
 			<h3 class="organisation"><a href="https://www.reading.ac.uk">University of Reading</a>, <span class="location">UK</span></h3>
-			<details open>
-				<summary>
+			<details class="timeline-details" open>
+				<summary class="timeline-summary">
 					Managed the University’s collaboration on two major EU funded projects: <a href="https://cordis.europa.eu/project/id/25500">COMRIS</a> and <a href="https://cordis.europa.eu/project/id/IST-1999-11488">PING</a> — coordinated work from several international teams of developers and built software with European partners.
 					<svg class="icon" role="img" aria-label="Toggle"><use href="#symbol-chevron-down" /></svg>
 				</summary>
@@ -202,14 +202,14 @@
 	<h2 class="section-heading">Education</h2>
 	<ol class="timeline" reversed>
 		<li>
-			<p class="date"><time title="Graduated 1998">1998</time></p>
+			<p class="timeline-date"><time title="Graduated 1998">1998</time></p>
 			<h3 class="position"><span class="qualification">MSc Computer Science & Cybernetics</span> — <span class="institution"><a href="https://www.reading.ac.uk">University of Reading</a>, <span class="location">UK</span></span></h3>
 			<p>Artificial intelligence, computer graphics, user interaction, image processing, software engineering, virtual environments.</p>
 			<p>Thesis: <q>Overcoming the Effects of Network Latencies in Distributed Synthetic Environments</q>.</p>
 			<p>Won an <a href="https://epsrc.ukri.org"><abbr title="Engineering and Physical Sciences Research Council">EPSRC</abbr></a> scholarship.</p>
 		</li>
 		<li>
-			<p class="date"><time title="Graduated 1997">1997</time></p>
+			<p class="timeline-date"><time title="Graduated 1997">1997</time></p>
 			<h3 class="position"><span class="qualification">BSc (Hons) Physics</span> — <span class="institution"><a href="https://www.birmingham.ac.uk">University of Birmingham</a>, <span class="location">UK</span></span></h3>
 			<p>Applied and theoretical physics, maths, computing, laboratory work, philosophy of science.</p>
 		</li>
@@ -230,10 +230,10 @@
 	<p>References are available on request.</p>
 </section>
 
-<footer>
-	<p><small>Last updated <time datetime="2020-10">Oct 2020</time>.</small></p>
+<footer class="footer">
+	<p><small>Last updated <time datetime="2021-02">Feb 2021</time>.</small></p>
 </footer>
 
-<script src="main.js"></script>
+<script src="main.js" inline></script>
 </body>
 </html>
