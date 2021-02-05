@@ -28,7 +28,7 @@
   "homepage": "https://bworth.github.io/cv/",
   "repository": {
     "type": "git",
-    "url": "git+https://bworth@github.com/bworth/cv.git"
+    "url": "git+https://github.com/bworth/cv.git"
   },
   "bugs": {
     "url": "https://github.com/bworth/cv/issues"
