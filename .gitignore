@@ -1,8 +1,9 @@
-node_modules
-
-archive
-build
-coverage
+node_modules/
 
 .DS_Store
-notes.txt
+
+/archive/
+/build/
+/coverage/
+
+/notes.txt
