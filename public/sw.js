@@ -1,4 +1,4 @@
-const CACHE_NAME = 'cache-v1';
+const CACHE_NAME = 'cache-v1.2.1';
 const PRECACHE_URLS = ['index.html', './', './?source=pwa'];
 
 function responseFallback(title) {
@@ -70,6 +70,7 @@ function preferCache(request, cacheName) {
 	});
 }
 
+// eslint-disable-next-line no-unused-vars
 function preferNetwork(request, cacheName, timeout) {
 	return fromNetwork(request, timeout)
 		.then((response) => updateCache(cacheName, request, response))
