@@ -70,6 +70,7 @@ function preferCache(request, cacheName) {
 	});
 }
 
+// eslint-disable-next-line no-unused-vars
 function preferNetwork(request, cacheName, timeout) {
 	return fromNetwork(request, timeout)
 		.then((response) => updateCache(cacheName, request, response))
