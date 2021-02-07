@@ -18,13 +18,6 @@
     "SVG",
     "Git"
   ],
-  "scripts": {
-    "build": "gulp build && gulp inlineSources",
-    "dev": "gulp dev",
-    "lint": "gulp lint",
-    "start": "gulp",
-    "test": "gulp test"
-  },
   "homepage": "https://bworth.github.io/cv/",
   "repository": {
     "type": "git",
@@ -32,6 +25,13 @@
   },
   "bugs": {
     "url": "https://github.com/bworth/cv/issues"
+  },
+  "scripts": {
+    "build": "gulp build",
+    "dev": "gulp dev",
+    "lint": "gulp lint",
+    "start": "gulp",
+    "test": "gulp test"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
