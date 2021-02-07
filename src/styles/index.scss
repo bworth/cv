@@ -1,38 +1,5 @@
-$font-family: verdana, sans-serif;
-$font-size: 14px;
-$font-size-smaller-screens: 12px;
-$font-size-print: 6.8pt;
-$line-height: 1.5;
-
-$content-margin-left: 9rem;
-
-$transition-duration: 500ms;
-$transition-duration-short: 150ms;
-
-$breakpoint-large: 938px;
-$breakpoint-medium: 760px;
-
-@keyframes fade-in {
-	from {
-		opacity: 0;
-	}
-
-	to {
-		opacity: unset;
-	}
-}
-
-@keyframes fade-in-and-down {
-	from {
-		opacity: 0;
-		transform: translateY(-1rem);
-	}
-
-	to {
-		opacity: unset;
-		transform: unset;
-	}
-}
+@import './keyframes';
+@import './variables';
 
 :root {
 	--color: #2d2d2d;
